@@ -1,0 +1,82 @@
+@import './Variables.scss';
+
+.container {
+  min-height: calc(100vh - 2rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.formWrapper {
+  width: 80%;
+  max-width: 500px;
+  margin: 0 auto;
+
+  .fieldWrapper {
+    margin: 1rem 0;
+    display: block;
+    p {
+      font-size: 12px;
+      color: #da1414;
+      padding-bottom: 0.3rem;
+    }
+  }
+  form {
+    text-align: center;
+
+    input {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 50px;
+      border: 1px solid #d3d3d3;
+      background: none;
+
+      &:focus {
+        outline: none !important;
+        border: 1px solid $orange;
+      }
+    }
+
+    button {
+      background: $orange;
+      border: none;
+      color: #fff;
+      padding: 1rem 2rem;
+      margin-top: 1rem;
+      border-radius: 50px;
+
+      &:hover {
+        background: $orange-light;
+      }
+      &:active {
+        background: $orange;
+      }
+    }
+  }
+}
+.formError {
+      font-size: 12px;
+      color: #da1414;
+      padding: 0.3rem 0;
+}
+
+.tabbedNav {
+  display: flex;
+  list-style: none;
+  width: 100%;
+  padding: 2rem 0;
+  li {
+    flex-basis: 50%;
+    button {
+      width: 100%;
+      border: none;
+      padding: 1rem
+    }
+  }
+}
+
+.active {
+  background: $orange;
+  color: #fff;
+}

@@ -1,9 +1,55 @@
-function App() {
-  return (
-    <div> 
-      <h1>Basic Setup</h1>
-    </div>
-  );
-}
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
+import { validateUser } from '../reducers/sessionReducer';
 
-export default App;
+import AuthFormContainer from './authentication/AuthFromContainer';
+import HomePage from '../containers/HomePage';
+import Loader from './Loader';
+import Nav from './Nav';
+
+const App = (props) => {
+  const { currentUser, loading, performUserValidation } = props;
+
+  useEffect(() => {
+    performUserValidation();
+  }, []);
+
+  console.log(currentUser);
+  return (
+    <>
+      <Router>
+        <Switch>
+          {loading && <Loader />}
+          {!currentUser && <AuthFormContainer />}
+          {!loading && (
+            <>
+              <Nav currentUser={currentUser} />
+              <Route path="/" exact component={HomePage} />
+            </>
+          )}
+        </Switch>
+      </Router>
+
+    </>
+  );
+};
+
+const mapStateToProps = (state) => ({
+  currentUser: state.currentUser,
+  loading: state.loading,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  performUserValidation: () => {
+    dispatch(validateUser());
+  },
+});
+
+const AppConnected = connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default AppConnected;
