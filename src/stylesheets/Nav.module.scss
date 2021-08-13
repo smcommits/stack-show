@@ -1,10 +1,17 @@
 .mainNav {
   background: #fff;
   padding: 1rem;
-
-  ul {
+  .mainNavUl {
     list-style: none;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    position: relative;
+    
+    i {
+      font-size: 24px;
+      color: #989898;
+    }
   }
 }
+

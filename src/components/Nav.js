@@ -1,25 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { logOutUser } from '../reducers/sessionReducer';
 import styles from '../stylesheets/Nav.module.scss';
+import Search from './Search';
+import Menu from './Menu';
 
 const Nav = (props) => {
   const { currentUser, logOut } = props;
-
+  const [openMenu, setOpenMenu] = useState(false);
   const handleLogout = () => {
     logOut();
   };
 
+  const handleMenu = () => {
+    setOpenMenu(!openMenu);
+  };
+
   return (
     <nav className={styles.mainNav}>
-      <ul>
-        <i class="las la-bars"></i>
-        {currentUser && (
-        <li>
-          <button type="button" onClick={handleLogout}>Log Out</button>
-        </li>
-        )}
+      <ul className={styles.mainNavUl}>
+        <i onClick={handleMenu} className="las la-bars" />
+        <Search />
       </ul>
+
+      <Menu menuHandler={handleMenu} open={openMenu} logOut={logOut}/>
+
     </nav>
   );
 };

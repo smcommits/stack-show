@@ -18,7 +18,7 @@ const validateUser = () => {
     Auth.userValidation()
       .then((res) => {
         if (res.success) {
-          dispatch({ type: 'SET_CURRENT_USER_TRUE', payload: res.data.uid });
+          dispatch({ type: 'SET_CURRENT_USER_TRUE', payload: res.data });
         }
         dispatch({ type: 'HIDE_LOADER' });
       });

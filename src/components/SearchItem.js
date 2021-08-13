@@ -2,16 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import styles from '../stylesheets/Search.module.scss';
+import styles from '../stylesheets/HomePage.module.scss';
 
 const SearchItem = (props) => {
   const { option } = props;
 
   return (
     <li className={styles.search_list_item}>
-      <Link to={`/actor/${option.id}`}>
+      <Link to={`/project/${option.id}`}>
         <div className={styles.search_item}>
-          {option.name}
+          {option.title}
           <figure>
             <img src={`https://image.tmdb.org/t/p/w200/${option.profile_path}`} alt="" />
           </figure>

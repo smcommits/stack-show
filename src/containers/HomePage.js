@@ -4,7 +4,9 @@ import CreateProject from '../components/CreateProject';
 import BackendAPI from '../core/services/api';
 import { fetchProjects } from '../reducers/project';
 import ProjectCard from '../components/ProjectCard';
-import styles from '../stylesheets/HomePage.module.scss'
+import styles from '../stylesheets/HomePage.module.scss';
+import Search from '../components/Search';
+
 const HomePage = (props) => {
   const { projects, getProjects } = props;
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { fetchSearch } from '../fetch/movieDB';
+import BackendAPI from '../core/services/api';
 
 export default function CustomSearchHook(query) {
   const [loading, setLoading] = useState(true);
@@ -17,9 +17,9 @@ export default function CustomSearchHook(query) {
     const { CancelToken } = axios;
     const source = CancelToken.source();
 
-    fetchSearch(query, source.token)
+    BackendAPI.searchProject(query, source.token)
       .then((res) => {
-        setOptions(res.data.results.splice(0, 5));
+        setOptions(res.data.splice(0, 5));
         setLoading(false);
       }).catch((e) => {
         if (axios.isCancel(e)) return;

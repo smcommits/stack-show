@@ -1,0 +1,84 @@
+@import './Variables.scss';
+
+.projectImage {
+  position: relative;
+}
+
+.projectImageContainer {
+  img {
+    width: 100%;
+  }
+
+
+}
+
+.main {
+  padding-bottom: 50px;
+}
+
+.imageOverlay {
+  position: absolute;
+  display: flex;
+  left: 20px;
+  bottom: 20px;
+  align-items: center;
+  figure {
+    width: 30%;
+  }
+  img {
+    width: 100%;
+    border-radius: 50%;
+  }
+
+  .overlayText {
+    margin-left: .5rem;
+  }
+}
+
+.projectDetails {
+  padding: 1rem 2rem;
+  p {
+    margin-top: 1.5rem;
+    text-align: left;
+    font-size: 14px;
+  }
+}
+
+.showMoreButton {
+  background: none;
+  border: none;
+  margin: 0 auto;
+  display: block;
+  font-size: 18px;
+}
+
+.callToAction {
+  background: $orange;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  border: none;
+  color: #fff;
+  padding: 1.2rem;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  div {
+    display: flex;
+    align-items: center;
+  }
+  span {
+    margin-right: .5rem;
+  }
+  i {
+    font-size: 24px;
+  }
+  .orange {
+    color: $orange
+  }
+}
