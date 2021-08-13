@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const backendAPI = (() => {
+const BackendAPI = (() => {
   const endPoints = {
     rootURI: 'http://localhost:5000/api',
     allProjects: '/projects',
@@ -50,4 +50,4 @@ const backendAPI = (() => {
   };
 })();
 
-export default backendAPI;
+export default BackendAPI;

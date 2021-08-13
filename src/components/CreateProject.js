@@ -38,6 +38,7 @@ const CreateProject = (props) => {
         ...projectsParams,
         image_url: res.data.secure_url,
       });
+      console.log(res);
     });
   };
 

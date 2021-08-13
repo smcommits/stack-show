@@ -41,7 +41,6 @@ const App = (props) => {
 
 const mapStateToProps = (state) => ({
   currentUser: state.currentUser,
-  loading: state.loading,
 });
 
 const mapDispatchToProps = (dispatch) => ({
