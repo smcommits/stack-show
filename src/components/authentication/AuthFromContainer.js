@@ -27,17 +27,17 @@ const AuthFormContainer = (props) => {
     });
   };
 
-  const handleSignUpSubmit = async (e) => {
-    e.preventDefault();
+  const handleSignUpSubmit = async () => {
     const res = await Auth.signUp(formData);
     if (res.status === 'success') {
       setSuccess(true);
-    } else { 
+      setCurrentUser(res.data.uid);
+    } else {
       setSuccess(false);
     }
   };
 
-  const handleLogInSubmit = async (e) => {
+  const handleLogInSubmit = async () => {
     const res = await Auth.signIn(formData);
     if (res.status === 200) {
       setSuccess(true);
