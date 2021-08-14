@@ -21,6 +21,7 @@ const Menu = (props) => {
       <ul>
         <li><Link to="/" onClick={menuHandler}>Home</Link></li>
         <li><Link to="/favorites" onClick={menuHandler}>Favorites</Link></li>
+        <li><Link to='/create' onClick={menuHandler}>Create Project</Link></li>
         <li onClick={logOut}>Logout</li>
       </ul>
     </nav>

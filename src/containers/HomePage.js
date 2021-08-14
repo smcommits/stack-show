@@ -18,7 +18,6 @@ const HomePage = (props) => {
   const projectList = projects.map((project) => <ProjectCard project={project} key={project.id} />);
   return (
     <>
-      <h1>HomePage</h1>
 
       <section className={styles.projectSection}>
         {projectList}

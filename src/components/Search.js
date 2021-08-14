@@ -23,7 +23,7 @@ const Search = (props) => {
   const searchOrCloseButton = () => (isOpen ? <i onClick={toggleSearch} className={`las la-times ${styles.searchToggle}`} />
     : <i onClick={toggleSearch} className={`las la-search ${styles.searchToggle}`} />);
 
-  const optionsList = options.map((option) => (<SearchItem key={option.id} option={option} />));
+  const optionsList = options.map((option) => (<SearchItem key={option.id} option={option} toggleSearch={toggleSearch} />));
 
   return (
     <div className={`${styles.searchWrapper} ${isOpen && styles.show}`}>

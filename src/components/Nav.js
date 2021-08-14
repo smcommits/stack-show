@@ -20,6 +20,8 @@ const Nav = (props) => {
     <nav className={styles.mainNav}>
       <ul className={styles.mainNavUl}>
         <i onClick={handleMenu} className="las la-bars" />
+        <h1>HomePage</h1>
+        <div className={styles.place}/>
         <Search />
       </ul>
 

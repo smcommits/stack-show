@@ -1,6 +1,12 @@
 .mainNav {
   background: #fff;
   padding: 1rem;
+  position: fixed;
+  width: 100%;
+
+  .place {
+    width: 24px;
+  }
   .mainNavUl {
     list-style: none;
     display: flex;

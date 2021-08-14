@@ -13,6 +13,7 @@ import Loader from './Loader';
 import Nav from './Nav';
 import ProjectPage from '../containers/ProjectPage';
 import Favorites from '../containers/Favorites';
+import CreateProject from './CreateProject';
 
 const App = (props) => {
   const { currentUser, loading, performUserValidation } = props;
@@ -34,6 +35,7 @@ const App = (props) => {
               <Route path="/" exact component={HomePage} />
               <Route path="/project/:id" component={ProjectPage} />
               <Route path="/favorites" component={Favorites} />
+              <Route path="/create" component={CreateProject} />
             </>
           )}
         </Switch>

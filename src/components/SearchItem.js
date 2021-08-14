@@ -5,16 +5,13 @@ import PropTypes from 'prop-types';
 import styles from '../stylesheets/HomePage.module.scss';
 
 const SearchItem = (props) => {
-  const { option } = props;
+  const { option, toggleSearch } = props;
 
   return (
     <li className={styles.search_list_item}>
-      <Link to={`/project/${option.id}`}>
+      <Link to={`/project/${option.id}`} onClick={toggleSearch}>
         <div className={styles.search_item}>
           {option.title}
-          <figure>
-            <img src={`https://image.tmdb.org/t/p/w200/${option.profile_path}`} alt="" />
-          </figure>
         </div>
       </Link>
     </li>
