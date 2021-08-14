@@ -15,6 +15,7 @@ const ProjectCard = (props) => {
     id,
   } = project;
 
+  console.log(project)
   const projectLink = `/project/${id}`;
 
   const stackListElements = stackList.map((stack) => <li key={Math.random()}>{stack}</li>);

@@ -3,7 +3,7 @@ import BackendAPI from '../core/services/api';
 const projectReducer = (state = [], action) => {
   switch (action.type) {
     case ('FETCH_PROJECTS'):
-      return [...state, ...action.payload];
+      return [...action.payload];
     default:
       return state;
   }

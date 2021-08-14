@@ -106,6 +106,18 @@ const BackendAPI = (() => {
     }
   };
 
+  const favoriteProjects = async () => {
+    try {
+      const res = axios.get(endPoints.rootURI + endPoints.favoriteProject);
+      return res;
+    } catch (err) {
+      if (err.response) {
+        return err.response;
+      }
+      return err;
+    }
+  };
+
   return {
     getAllProjects,
     createProject,
@@ -113,6 +125,7 @@ const BackendAPI = (() => {
     getProjectDetails,
     favoriteProject,
     unFavoriteProject,
+    favoriteProjects, 
   };
 })();
 

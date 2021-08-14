@@ -12,6 +12,7 @@ import HomePage from '../containers/HomePage';
 import Loader from './Loader';
 import Nav from './Nav';
 import ProjectPage from '../containers/ProjectPage';
+import Favorites from '../containers/Favorites';
 
 const App = (props) => {
   const { currentUser, loading, performUserValidation } = props;
@@ -32,6 +33,7 @@ const App = (props) => {
               <Nav currentUser={currentUser} />
               <Route path="/" exact component={HomePage} />
               <Route path="/project/:id" component={ProjectPage} />
+              <Route path="/favorites" component={Favorites} />
             </>
           )}
         </Switch>

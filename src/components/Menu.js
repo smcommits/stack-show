@@ -1,9 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import styles from '../stylesheets/Menu.module.scss';
 
 const Menu = (props) => {
-  const { currentUser, menuHandler, open, logOut } = props;
+  const {
+    currentUser, menuHandler, open, logOut,
+  } = props;
 
   const { name, avatar_path: avatarPath } = currentUser;
 
@@ -16,8 +19,8 @@ const Menu = (props) => {
         <p>{name.charAt(0).toUpperCase() + name.slice(1)}</p>
       </section>
       <ul>
-        <li>Home</li>
-        <li>Favorites</li>
+        <li><Link to="/" onClick={menuHandler}>Home</Link></li>
+        <li><Link to="/favorites" onClick={menuHandler}>Favorites</Link></li>
         <li onClick={logOut}>Logout</li>
       </ul>
     </nav>
