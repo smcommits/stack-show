@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import styles from '../stylesheets/ProjectDetail.module.scss';
 import Rating from './Rating';
 import { fetchProjectDetails } from '../reducers/projectDetails';
+import BackendAPI from '../core/services/api';
 
 const ProjectDetail = (props) => {
   const { project, id, getProjectDetail } = props;
-  console.log(id);
   const {
     title,
     image_path: imagePath,
@@ -15,23 +15,41 @@ const ProjectDetail = (props) => {
     user,
     average_rating: averageRating,
     description,
+    is_favorite: isFavorite,
+    favorite_id: favID,
   } = project.details || {};
 
-  console.log(project);
-
   const [isReadMore, setIsReadMore] = useState(true);
-  const [favorite, setfavorite] = useState(false);
+  const [favorite, setFavorite] = useState(isFavorite);
+  const [favoriteId, setFavoriteId] = useState(favID);
 
   useEffect(() => {
     getProjectDetail(id);
   }, [id]);
 
+  useEffect(() => {
+    setFavoriteId(favID);
+  }, [favID]);
+
+  useEffect(() => {
+    setFavorite(isFavorite);
+  }, [isFavorite]);
+
   const toggleReadMore = () => {
     setIsReadMore(!isReadMore);
   };
 
-  const handleFavorite = () => {
-    setfavorite(!favorite);
+  const handleFavorite = async () => {
+    setFavorite(!favorite);
+
+    if (favorite) {
+      const res = await BackendAPI.unFavoriteProject(favoriteId);
+    } else {
+      const res = await BackendAPI.favoriteProject(id);
+      if (res.status === 200) {
+        setFavoriteId(res.data.id);
+      }
+    }
   };
 
   // const stackListElements = stackList.map((stack) => <li key={Math.random()}>{stack}</li>);

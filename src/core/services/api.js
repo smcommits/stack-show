@@ -1,12 +1,15 @@
 import axios from 'axios';
 
 const BackendAPI = (() => {
+  axios.defaults.withCredentials = true;
+
   const endPoints = {
     rootURI: 'http://localhost:5000/api',
     allProjects: '/projects',
     createProject: '/projects',
     projectSearch: '/search/projects',
     projectDetails: '/projects/',
+    favoriteProject: '/favorites/',
   };
 
   const baseConfig = {
@@ -65,7 +68,36 @@ const BackendAPI = (() => {
       const res = axios.get(endPoints.rootURI + endPoints.projectDetails + id, {
         withCredentials: true,
       });
-      return res
+      return res;
+    } catch (err) {
+      if (err.response) {
+        return err.response;
+      }
+      return err;
+    }
+  };
+
+  const favoriteProject = async (id) => {
+    try {
+      const res = axios.post(endPoints.rootURI + endPoints.favoriteProject, {
+        params: {
+          project_id: id,
+        },
+
+      });
+      return res;
+    } catch (err) {
+      if (err.response) {
+        return err.response;
+      }
+      return err;
+    }
+  };
+
+  const unFavoriteProject = async (id) => {
+    try {
+      const res = axios.delete(endPoints.rootURI + endPoints.favoriteProject + id);
+      return res;
     } catch (err) {
       if (err.response) {
         return err.response;
@@ -79,6 +111,8 @@ const BackendAPI = (() => {
     createProject,
     searchProject,
     getProjectDetails,
+    favoriteProject,
+    unFavoriteProject,
   };
 })();
 
