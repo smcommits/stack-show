@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import ProjectCard from '../components/ProjectCard';
 import { fetchFavorites } from '../reducers/favoriteProjects';
-import styles from '../stylesheets/Favorite.module.scss'
+import styles from '../stylesheets/Favorite.module.scss';
 
 const Favorites = (props) => {
   const { favoriteProjects, getFavorites } = props;
 
-  console.log(favoriteProjects)
+  console.log(favoriteProjects);
   useEffect(() => {
     getFavorites();
   }, []);

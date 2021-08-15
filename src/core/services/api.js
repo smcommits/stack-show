@@ -10,6 +10,7 @@ const BackendAPI = (() => {
     projectSearch: '/search/projects',
     projectDetails: '/projects/',
     favoriteProject: '/favorites/',
+    allConversations: '/conversations',
   };
 
   const baseConfig = {
@@ -118,6 +119,18 @@ const BackendAPI = (() => {
     }
   };
 
+  const allConversations = async () => {
+    try {
+      const res = axios.get(endPoints.rootURI + endPoints.allConversations);
+      return res;
+    } catch (err) {
+      if (err.response) {
+        return err.response;
+      }
+      return err;
+    }
+  };
+
   return {
     getAllProjects,
     createProject,
@@ -125,7 +138,8 @@ const BackendAPI = (() => {
     getProjectDetails,
     favoriteProject,
     unFavoriteProject,
-    favoriteProjects, 
+    favoriteProjects,
+    allConversations,
   };
 })();
 

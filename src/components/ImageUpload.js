@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 
 import InputCall from './InputCall';
+
 const ImageUpload = (props) => {
   const { fileHandler, setImageUpload, styles } = props;
   const [dragging, setDragging] = useState(false);

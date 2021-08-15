@@ -14,6 +14,7 @@ import Nav from './Nav';
 import ProjectPage from '../containers/ProjectPage';
 import Favorites from '../containers/Favorites';
 import CreateProject from './CreateProject';
+import Conversations from   '../components/Conversations/Conversations'
 
 const App = (props) => {
   const { currentUser, loading, performUserValidation } = props;
@@ -22,7 +23,6 @@ const App = (props) => {
     performUserValidation();
   }, []);
 
-  console.log(currentUser);
   return (
     <>
       <Router>
@@ -30,17 +30,17 @@ const App = (props) => {
           {loading && <Loader />}
           {!currentUser && <AuthFormContainer />}
           {!loading && (
-            <>
-              <Nav currentUser={currentUser} />
-              <Route path="/" exact component={HomePage} />
-              <Route path="/project/:id" component={ProjectPage} />
-              <Route path="/favorites" component={Favorites} />
-              <Route path="/create" component={CreateProject} />
-            </>
+          <>
+            <Nav currentUser={currentUser} />
+            <Route path="/" exact component={HomePage} />
+            <Route path="/project/:id" component={ProjectPage} />
+            <Route path="/favorites" component={Favorites} />
+            <Route path="/create" component={CreateProject} />
+            <Route path="/conversations" component={Conversations} />
+          </>
           )}
         </Switch>
       </Router>
-
     </>
   );
 };
