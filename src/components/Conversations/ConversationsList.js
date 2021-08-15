@@ -1,43 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import BackendAPI from '../../core/services/api';
-import styles from '../../stylesheets/ConversationsList.module.scss';
-import ActionCableManager from '../../core/helpers/actionCableHelper';
-
+import React from 'react';
+import {DateTime} from 'luxon'
 const ConversationsList = (props) => {
-  const { setActive } = props;
-  const [conversations, setConversations] = useState([]);
+  const { setActive, conversations, styles } = props;
+  
+  const conversationList = conversations.map((conversation) => {
+    const lastMessage = conversation.messages[conversation.messages.length - 1]
+    const previewText = lastMessage ? lastMessage.text : '';
+    const dateTime = lastMessage ? DateTime.fromISO(lastMessage.created_at).toLocaleString(DateTime.DATE_MED): '';
+    return (
 
-  const handleReceived = (response) => {
-    const { conversation } = response;
-    setConversations([...conversations, conversation]);
-  };
-
-  useEffect(() => {
-    ActionCableManager.createSubscription({ channel: 'ConversationsChannel', recievedCallback: handleReceived });
-    BackendAPI.allConversations()
-      .then((res) => {
-        setConversations(res.data);
-        setActive(res.data[0]);
-      });
-  }, []);
-
-  const conversationItems = conversations.map((conversation) => (
-    <button onClick={() => setActive(conversation)} key={conversation.id} type="button">
-      <li>
+      <li onClick={() => setActive(conversation.id)}>
         <figure>
-          <img src={conversation.users[0].image || '/profile.png'} alt="" className={styles.senderImage} />
+          <img src={conversation.users[0].image || '/profile.png'} alt="" />
         </figure>
-        <strong className={styles.senderName}>{conversation.users[0].name}</strong>
+        <div className={styles.right}>
+          <div className={styles.top}>
+          <strong>{conversation.users[0].name}</strong>
+            <span className={styles.secondaryInfo}>{dateTime}</span>
+          </div>
+          <p className={styles.secondaryInfo}>{previewText}</p>
+        </div>
       </li>
-    </button>
-  ));
+    );
+  });
 
   return (
-    <section className={styles.convListContainer}>
-      <ul className={styles.convList}>
-        {conversationItems}
-      </ul>
-    </section>
+    <ul className={styles.convList}>
+      {conversationList}
+    </ul>
   );
 };
+
 export default ConversationsList;

@@ -11,6 +11,7 @@ const BackendAPI = (() => {
     projectDetails: '/projects/',
     favoriteProject: '/favorites/',
     allConversations: '/conversations',
+    createMessage: '/messages',
   };
 
   const baseConfig = {
@@ -131,6 +132,24 @@ const BackendAPI = (() => {
     }
   };
 
+  const createMessage = async (text, conversationId, userId) => {
+    try {
+      const res = axios.post(endPoints.rootURI + endPoints.createMessage, {
+        params: {
+          text,
+          conversation_id: conversationId,
+          user_id: userId,
+        },
+      });
+      return res;
+    } catch (err) {
+      if (err.response) {
+        return err.response;
+      }
+      return err;
+    }
+  };
+
   return {
     getAllProjects,
     createProject,
@@ -140,6 +159,7 @@ const BackendAPI = (() => {
     unFavoriteProject,
     favoriteProjects,
     allConversations,
+    createMessage,
   };
 })();
 

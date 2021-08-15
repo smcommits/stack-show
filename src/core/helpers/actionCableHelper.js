@@ -9,9 +9,10 @@ const ActionCableManager = (() => {
     recievedCallback = null,
     disconnectedCallback = null,
     rejectedCallback = null,
+    params = {},
   } = {}) => {
     cable.subscriptions.create(
-      channel,
+      { channel, ...params },
       {
         connected: connectedCallback,
         received: recievedCallback,

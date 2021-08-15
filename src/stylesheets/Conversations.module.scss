@@ -1,0 +1,111 @@
+@import './Variables.scss';
+.convList {
+  list-style: none;
+  background: #fff;
+
+
+  li {
+    display: flex;
+    padding: 1rem 0;
+    align-items: flex-start;
+
+    figure {
+      width: 30%;
+      padding: 0 1.5rem;
+    }
+    img {
+      border-radius: 50px;
+      width: 100%;
+    }
+  }
+}
+
+
+.secondaryInfo {
+  color: #adadad;
+  font-size: 14px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.right {
+  width: 100%;
+  padding-right: 1.5rem;
+  p {
+    margin-top: .5rem;
+  }
+}
+.messageSection {
+  position: relative;
+  height: 100vh;
+  max-height: 100vh;
+  overflow-x: scroll;
+  padding-bottom: 70px;
+}
+.messageList {
+  padding: 3rem 2rem;
+  list-style: none;
+  li {
+    margin-top: 2rem;
+
+  }
+}
+
+.messageText {
+  background: #fff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  padding: 1rem .5rem;
+  display: inline-block;
+  border-radius: 5px;
+}
+
+.senderMessage {
+  text-align: right;
+}
+
+.currentUserMessage {
+  text-align: left;
+}
+
+.messageTime {
+  color: #adadad;
+  font-size: 12px;
+  margin-top: .5rem;
+  display: block;
+}
+
+.senderMessage {
+
+}
+
+.messageFrom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  background: #fff;
+  padding: 1rem;
+  border-top: 1px solid #ede5e5;
+  input {
+    width: 100%;
+    border: none;
+    padding: .5rem;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  button {
+    border: none;
+    background: inherit;
+    i {
+      font-size: 24px;
+      color: $orange;
+    }
+  }
+}
