@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import BackendAPI from '../../core/services/api';
 
 const Message = (props) => {
   const { conversation, currentUser, styles } = props;
-  const { messages } = conversation;
+  const { messages } = conversation || {};
 
   if (messages === undefined) return null;
 
-  const [ text, setText ] = useState('');
+  const [text, setText] = useState('');
+
+  useEffect(() => {
+  }, [messages.length]);
 
   const messageList = messages.map((message) => {
     const time = message.created_at;
