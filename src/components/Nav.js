@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { logOutUser } from '../reducers/sessionReducer';
 import styles from '../stylesheets/Nav.module.scss';
-import Search from './Search';
+import Search from './helpers/search/Search';
 import Menu from './Menu';
+import BackendAPI from '../core/services/api';
+import searchStyles from '../stylesheets/Search.module.scss';
 
 const Nav = (props) => {
   const { currentUser, logOut } = props;
@@ -19,13 +21,13 @@ const Nav = (props) => {
   return (
     <nav className={styles.mainNav}>
       <ul className={styles.mainNavUl}>
-        <i onClick={handleMenu} className="las la-bars" />
+        <i onClick={handleMenu} className="las la-bars displayMobileNone" />
         <h1>HomePage</h1>
-        <div className={styles.place}/>
-        <Search />
+        <div className={styles.place} />
+        <Menu menuHandler={handleMenu} open={openMenu} logOut={logOut} />
+        <Search endpoint={BackendAPI.searchProject.bind(BackendAPI)}  styles={searchStyles}/>
       </ul>
 
-      <Menu menuHandler={handleMenu} open={openMenu} logOut={logOut}/>
 
     </nav>
   );

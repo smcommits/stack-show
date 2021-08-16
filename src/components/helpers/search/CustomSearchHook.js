@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import BackendAPI from '../core/services/api';
 
-export default function CustomSearchHook(query) {
+export default function CustomSearchHook(query, endpoint) {
   const [loading, setLoading] = useState(true);
   const [options, setOptions] = useState([]);
   const [error, setError] = useState(false);
@@ -17,7 +16,7 @@ export default function CustomSearchHook(query) {
     const { CancelToken } = axios;
     const source = CancelToken.source();
 
-    BackendAPI.searchProject(query, source.token)
+    endpoint(query, source.token)
       .then((res) => {
         setOptions(res.data.splice(0, 5));
         setLoading(false);

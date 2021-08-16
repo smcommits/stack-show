@@ -3,15 +3,14 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import CustomSearchHook from './CustomSearchHook';
 import SearchItem from './SearchItem';
-import styles from '../stylesheets/Search.module.scss';
 
 const Search = (props) => {
-  const { parent } = props;
+  const { parent, endpoint, styles } = props;
   const [query, setQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const isParentActor = parent === 'actorPage';
 
-  const { options, loading } = CustomSearchHook(query);
+  const { options, loading } = CustomSearchHook(query, endpoint);
   const handleSearch = (e) => {
     setQuery(e.target.value);
   };

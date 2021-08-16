@@ -12,6 +12,8 @@ const BackendAPI = (() => {
     favoriteProject: '/favorites/',
     allConversations: '/conversations',
     createMessage: '/messages',
+    userSearch: '/search/users',
+    startConversation: '/conversations',
   };
 
   const baseConfig = {
@@ -150,6 +152,37 @@ const BackendAPI = (() => {
     }
   };
 
+  const searchUsers = async (query) => {
+    try {
+      const res = await axios.get(
+        `${endPoints.rootURI + endPoints.userSearch}/?query=${query}`,
+        { withCredentials: true },
+      );
+      return res;
+    } catch (err) {
+      if (err.response) {
+        return err.response;
+      }
+    }
+  };
+
+  const startConversation = async (title, senderId, recieverId) => {
+    try {
+      const res = axios.post(endPoints.rootURI + endPoints.startConversation, {
+        params: {
+          title,
+          sender_id: senderId,
+          reciever_id: recieverId,
+        },
+      });
+      return res;
+    } catch (err) {
+      if (err.response) {
+        return err.response;
+      }
+      return err;
+    }
+  };
   return {
     getAllProjects,
     createProject,
@@ -160,6 +193,8 @@ const BackendAPI = (() => {
     favoriteProjects,
     allConversations,
     createMessage,
+    searchUsers,
+    startConversation,
   };
 })();
 

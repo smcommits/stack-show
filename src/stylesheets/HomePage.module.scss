@@ -1,4 +1,12 @@
 .projectSection {
-  display: grid;
-  grid-gap: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+@media(min-width: 768px) {
+  .projectSection {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+  }
 }

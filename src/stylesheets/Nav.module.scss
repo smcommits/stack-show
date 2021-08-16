@@ -16,7 +16,19 @@
     i {
       font-size: 24px;
       color: #989898;
+      z-index: 20;
     }
   }
 }
 
+
+@media (min-width:768px) {
+  .mainNav {
+    display: flex;
+    justify-content: space-between;
+
+    .mainNavUl {
+      width: 100%;
+    }
+  }
+}

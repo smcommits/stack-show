@@ -11,17 +11,20 @@ import {
 } from '../../core/helpers/ConversationHelper';
 import MessageCable from './MessageCable';
 import ActionCableManager from '../../core/helpers/actionCableHelper';
-
+import FindUser from './FindUser';
 import ConversationsList from './ConversationsList';
 import Cable from './Cable';
 
 const Conversations = (props) => {
   const {
-    conversations, getAllConversations, addConversation, addMessage,
+    conversations, getAllConversations, addConversation, addMessage, currentUser,
   } = props;
 
   const [activeConversation, setActiveConversation] = useState({});
-  const [active, setActive] = useState(false);
+  const [active, setActiveIndex] = useState(0);
+  const [findUser, setFindUser] = useState(false);
+
+  console.log(conversations);
 
   const handleReceived = (response) => {
     const { conversation } = response;
@@ -31,28 +34,29 @@ const Conversations = (props) => {
   const handleReceivedMessage = (response) => {
     const { message } = response;
     addMessage(message);
-    // setConversations(conversationsNew);
-    // setConversationLength(conversationsLength + 1)
   };
 
   useEffect(() => {
     getAllConversations();
   }, []);
 
-  const connectedCall = () => {
-    console.log('Iam connected');
-  };
-
   useEffect(() => {
     const conversationChannel = subcribeToConversationChannel(handleReceived);
     const messageChannels = subcribeToMessageChannel(conversations, handleReceivedMessage);
-    console.log(messageChannels);
 
     return function cleanup() {
       conversationChannel.unsubscribe();
       unsubscribeToMessageChannel(messageChannels);
     };
   });
+
+  const handleConversation = (title, sender_id, reciever_id) => {
+    setFindUser(false);
+    BackendAPI.startConversation(title, sender_id, reciever_id)
+      .then((res) => {
+        console.log(res);
+      });
+  };
 
   const findActiveConversation = () => conversations.find(
     (conversation) => conversation.id === activeConversation,
@@ -61,19 +65,33 @@ const Conversations = (props) => {
   return (
     <>
       <section className={styles.main}>
-        <div className={styles.inner}>
-          <ConversationsList
-            setActive={setActiveConversation}
-            conversations={conversations}
-            styles={styles}
-            className={styles.translateItems}
-          />
-          <Message
-            conversation={findActiveConversation()}
-            handleReceived={handleReceivedMessage}
-            styles={styles}
-            className={styles.translateItems}
-          />
+        {findUser
+        && (
+        <FindUser
+          findUser={setFindUser}
+          handleConversation={handleConversation}
+          currentUser={currentUser}
+        />
+        )}
+        <div className={styles.inner} style={{transform: `translateX(-${active* 100}%)`}}>
+          <section className={`${styles.conversationMain} ${styles.swipe}`}>
+            <ConversationsList
+              setActive={setActiveConversation}
+              conversations={conversations}
+              styles={styles}
+              setActiveIndex={setActiveIndex}
+              currentUser={currentUser}
+            />
+          </section>
+          <section className={`${styles.messageMain} ${styles.swipe}`}>
+            <Message
+              conversation={findActiveConversation()}
+              handleReceived={handleReceivedMessage}
+              styles={styles}
+              setActiveIndex={setActiveIndex}
+              findUser={setFindUser}
+            />
+          </section>
         </div>
       </section>
     </>
@@ -82,6 +100,7 @@ const Conversations = (props) => {
 
 const mapStateToProps = (state) => ({
   conversations: state.conversations,
+  currentUser: state.currentUser,
 });
 
 const mapDispatchToProps = (dispatch) => ({

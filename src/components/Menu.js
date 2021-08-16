@@ -13,7 +13,7 @@ const Menu = (props) => {
   return (
 
     <nav className={`${styles.mainMenu} ${open && styles.show}`}>
-      <i className="las la-times" onClick={menuHandler} />
+      <i className="las la-times displayMobileNone" onClick={menuHandler}/>
       <section className={styles.userSection}>
         <img src={avatarPath || '/profile.png'} alt="user" />
         <p>{name.charAt(0).toUpperCase() + name.slice(1)}</p>

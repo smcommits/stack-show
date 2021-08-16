@@ -1,3 +1,5 @@
+@import './Variables.scss';
+
 .mainMenu {
   z-index: 10;
   position: fixed;
@@ -42,4 +44,27 @@
 
 .mainMenu.show {
   transform: translateX(0);
+}
+
+@media (min-width: 768px) {
+  .mainMenu {
+    position: static;
+    transform: translateX(0%);
+    flex-direction: row;
+    .userSection {
+      display: none;
+    }
+    ul {
+      display: flex;
+      background: #fff;
+      padding-right: 50px;
+      li {
+        padding: 1rem;
+        a {
+          text-decoration: none;
+          color: $black;
+        }
+      }
+    }
+  }
 }

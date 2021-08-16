@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import styles from '../stylesheets/HomePage.module.scss';
+import styles from '../../../stylesheets/HomePage.module.scss';
 
 const SearchItem = (props) => {
   const { option, toggleSearch } = props;

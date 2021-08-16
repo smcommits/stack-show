@@ -61,7 +61,7 @@ const ProjectDetail = (props) => {
         <div className={styles.projectImage}>
           <figure className={styles.projectImageContainer}>
             <Image cloudName="dfsniizqr" publicId={imagePath}>
-              <Transformation gravity="north" height="400" width="400" crop="fill" />
+              <Transformation gravity="north" height="1920" width="1080" crop="fill" />
             </Image>
           </figure>
           <div className={styles.imageOverlay}>
