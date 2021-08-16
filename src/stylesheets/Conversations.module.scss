@@ -1,4 +1,11 @@
 @import './Variables.scss';
+.inner {
+  transition: transform 0.3s;
+}
+
+.translateItems {
+  display: inline-block;
+}
 .convList {
   list-style: none;
   background: #fff;
@@ -44,6 +51,7 @@
   max-height: 100vh;
   overflow-x: scroll;
   padding-bottom: 70px;
+  width: 100%;
 }
 .messageList {
   padding: 3rem 2rem;

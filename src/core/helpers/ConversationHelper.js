@@ -1,23 +1,20 @@
 import ActionCableManager from './actionCableHelper';
 
-const addSubscriptionToMessage = (conversation, callback, connectedCallback) => {
-  ActionCableManager.createSubscription({
-    channel: 'MessagesChannel',
-    recievedCallback: callback,
-    connectedCallback: connectedCallback,
-    params: { conversation: conversation },
-  });
-};
+const addSubscriptionToMessage = (conversation, callback, connectedCallback) => ActionCableManager.createSubscription({
+  channel: 'MessagesChannel',
+  recievedCallback: callback,
+  connectedCallback,
+  params: { conversation: conversation.id },
+});
 
-const subcribeToConversationChannel = (callback) => {
-  ActionCableManager.createSubscription({ channel: 'ConversationsChannel', recievedCallback: callback });
-};
+const subcribeToConversationChannel = (callback) => ActionCableManager.createSubscription({ channel: 'ConversationsChannel', recievedCallback: callback });
 
-const subcribeToMessageChannel = (conversations, callback) => {
-  conversations.map((conversation) => {
-    addSubscriptionToMessage(conversation, callback);
-    return null;
-  });
-};
+const subcribeToMessageChannel = (conversations, callback) => conversations.map((conversation) => {
+  return addSubscriptionToMessage(conversation, callback);
+});
 
-export { subcribeToMessageChannel, subcribeToConversationChannel, addSubscriptionToMessage };
+const unsubscribeToMessageChannel = (channels) => {
+  channels.forEach((channel) => channel.unsubscribe())
+}
+
+export { subcribeToMessageChannel, subcribeToConversationChannel, addSubscriptionToMessage , unsubscribeToMessageChannel};

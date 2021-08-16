@@ -3,13 +3,16 @@ import { sessionReducer } from './sessionReducer';
 import { projectReducer } from './project';
 import loaderReducer from './loader';
 import { projectDetailsReducer } from './projectDetails';
-import { favoriteProjectsReducer } from './favoriteProjects'
+import { favoriteProjectsReducer } from './favoriteProjects';
+import { conversationReducer } from './conversationReducer';
+
 const rootReducer = combineReducers({
   currentUser: sessionReducer,
   loading: loaderReducer,
   projects: projectReducer,
   project: projectDetailsReducer,
-  favoriteProjects: favoriteProjectsReducer
+  favoriteProjects: favoriteProjectsReducer,
+  conversations: conversationReducer,
 });
 
 export default rootReducer;

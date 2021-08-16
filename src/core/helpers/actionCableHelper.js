@@ -10,19 +10,18 @@ const ActionCableManager = (() => {
     disconnectedCallback = null,
     rejectedCallback = null,
     params = {},
-  } = {}) => {
-    cable.subscriptions.create(
-      { channel, ...params },
-      {
-        connected: connectedCallback,
-        received: recievedCallback,
-        disconnected: disconnectedCallback,
-        rejected: rejectedCallback,
-      },
-    );
-  };
+  } = {}) => cable.subscriptions.create(
+    { channel, ...params },
+    {
+      connected: connectedCallback,
+      received: recievedCallback,
+      disconnected: disconnectedCallback,
+      rejected: rejectedCallback,
+    },
+  );
 
   return {
+    cable,
     createSubscription,
   };
 })();

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import BackendAPI from '../../core/services/api';
 
@@ -8,10 +8,13 @@ const Message = (props) => {
 
   if (messages === undefined) return null;
 
+  const endDiv = useRef();
+
   const [text, setText] = useState('');
 
   useEffect(() => {
-  }, [messages.length]);
+    endDiv.current.scrollIntoView({ behavoir: 'smooth' });
+  });
 
   const messageList = messages.map((message) => {
     const time = message.created_at;
@@ -48,6 +51,7 @@ const Message = (props) => {
         <input onChange={handleChange} type="text" placeholder="Send a message" />
         <button type="submit" className={styles.sendButton}><i className="lar la-paper-plane" /></button>
       </form>
+      <div ref={endDiv} />
     </section>
 
   );

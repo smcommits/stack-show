@@ -2,10 +2,12 @@ import React from 'react';
 import { DateTime } from 'luxon';
 
 const ConversationsList = (props) => {
-  const { setActive, conversations, styles, messageSubscriber } = props;
+  const {
+    setActive, conversations, styles, messageSubscriber,
+  } = props;
 
   const conversationList = conversations.map((conversation) => {
-//    messageSubscriber(conversation)
+    //    messageSubscriber(conversation)
     const lastMessage = conversation.messages[conversation.messages.length - 1];
     const previewText = lastMessage ? lastMessage.text : '';
     const dateTime = lastMessage ? DateTime.fromISO(lastMessage.created_at).toLocaleString(DateTime.DATE_MED) : '';
@@ -17,19 +19,21 @@ const ConversationsList = (props) => {
         </figure>
         <div className={styles.right}>
           <div className={styles.top}>
-            <strong>{conversation.users[0].name}</strong>
-            <span className={styles.secondaryInfo}>{dateTime}</span>
+            <h4>{conversation.users[0].name}</h4>
+            <span className={`${styles.secondaryInfo} displayMobileNone `}>{dateTime}</span>
           </div>
-          <p className={styles.secondaryInfo}>{previewText}</p>
+          <p className={`${styles.secondaryInfo} displayMobileNone`}>{previewText}</p>
         </div>
       </li>
     );
   });
 
   return (
-    <ul className={styles.convList}>
-      {conversationList}
-    </ul>
+    <div className={styles.convListContainer}>
+      <ul className={styles.convList}>
+        {conversationList}
+      </ul>
+    </div>
   );
 };
 
