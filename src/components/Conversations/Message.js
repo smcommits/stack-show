@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import BackendAPI from '../../core/services/api';
+import { DateTime } from 'luxon';
 
 const Message = (props) => {
   const {
-    conversation, currentUser, styles, setActiveIndex, findUser,
+    conversation, currentUser, styles, setActiveIndex, 
   } = props;
   const { messages } = conversation || {};
 
@@ -20,6 +21,8 @@ const Message = (props) => {
 
   const messageList = messages.map((message) => {
     const time = message.created_at;
+    const dateTime = time ? DateTime.fromISO(time).toLocal().c : '';
+
     return (
       <li
         key={message.id}
@@ -29,7 +32,7 @@ const Message = (props) => {
         }
       >
         <p className={styles.messageText}>{message.text}</p>
-        <span className={styles.messageTime}>{time}</span>
+        <span className={styles.messageTime}>{`${dateTime.hour}:${dateTime.minute}`}</span>
       </li>
     );
   });
@@ -43,14 +46,13 @@ const Message = (props) => {
   };
 
   const handleSubmit = (e) => {
+    e.target.firstElementChild.value=""
     e.preventDefault();
     BackendAPI.createMessage(text, conversation.id, currentUser.id).then((res) => {
     });
   };
 
-  const newChat = () => {
-    findUser(true);
-  };
+  
 
   const sender = conversation.users.find((user) => user.id !== currentUser.id);
   if (!sender) {
@@ -59,26 +61,22 @@ const Message = (props) => {
 
   return (
     <>
-      <div className={styles.outerMessage}>
-        <div className={styles.userDetail}>
-          <i className="las la-angle-left" onClick={handleActive}/>
-          <div className={styles.text}>
-            <figure>
-              <img src={sender.image || '/profile.png'} alt="" />
-            </figure>
-            <h4>{sender.name}</h4>
-          </div>
+      <div className={styles.userDetail}>
+        <div className={styles.text}>
+          <figure>
+            <img src={sender.image || '/profile.png'} alt="" />
+          </figure>
+          <span>{sender.name}</span>
         </div>
-        <ul className={styles.messageList}>
-          {messageList}
-        </ul>
-        <form action="" className={styles.messageFrom} onSubmit={handleSubmit}>
-          <button type="button" className={styles.newButton} onClick={newChat}><i className="lab la-rocketchat" /></button>
-          <input onChange={handleChange} type="text" placeholder="Send a message" />
-          <button type="submit" className={styles.sendButton}><i className="lar la-paper-plane" /></button>
-        </form>
-        <div ref={endDiv} />
       </div>
+      <ul className={styles.messageList}>
+        {messageList}
+        <li ref={endDiv} />
+      </ul>
+      <form action="" className={styles.messageForm} onSubmit={handleSubmit}>
+        <input onChange={handleChange} type="text" placeholder="Send a message" />
+        <button type="submit" className={styles.sendButton}><i className="lar la-paper-plane" /></button>
+      </form>
     </>
   );
 };

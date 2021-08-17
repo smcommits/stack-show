@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image, Transformation } from 'cloudinary-react';
 import { Link } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 import styles from '../stylesheets/ProjectCard.module.scss';
 import Rating from './Rating';
 
@@ -15,7 +16,11 @@ const ProjectCard = (props) => {
     id,
   } = project;
 
-  console.log(project)
+  const isLarge = useMediaQuery({
+    query: '(min-width: 968px)',
+  });
+
+  console.log(project);
   const projectLink = `/project/${id}`;
 
   const stackListElements = stackList.map((stack) => <li key={Math.random()}>{stack}</li>);
@@ -24,7 +29,7 @@ const ProjectCard = (props) => {
       <Link to={projectLink}>
         <figure>
           <Image cloudName="dfsniizqr" publicId={imagePath}>
-            <Transformation gravity="north" height="500" width="400" crop="fill" />
+            <Transformation gravity="north" height={isLarge ? '1500' : '500'} width={isLarge ? '1080' : '400'} crop="fill" />
           </Image>
         </figure>
       </Link>

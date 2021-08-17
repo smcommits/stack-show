@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
 @import './Variables.scss';
+
 * {
   margin: 0;
   padding: 0;
@@ -9,11 +10,28 @@
 
 
 body {
-  font-family: 'Fira Sans', sans-serif;
+      font-family: 'Poppins', sans-serif;
   background: $gray-background;
-  color: #222f3e;
+	color: #34495e;
 }
 
 .displayMobileNone {
   display: none;
+}
+
+
+@media (min-width: 768px) {
+  .displayMobileNone {
+    display: unset;
+  }
+
+  .displayMdNone {
+    display: none
+  }
+}
+
+@media (min-width: 968px) {
+  .displayLgNone {
+    display: none;
+  }
 }

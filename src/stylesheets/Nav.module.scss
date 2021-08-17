@@ -2,6 +2,14 @@
   background: #fff;
   padding: 1rem;
   width: 100%;
+  position: relative;
+
+  .parentName {
+    font-weight: 500;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
   .place {
     width: 24px;
@@ -21,8 +29,41 @@
   }
 }
 
+.userDetails {
+  display: flex;
+  align-items: center;
+  figure {
+    position: relative;
+    .loader {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      
 
-@media (min-width:768px) {
+    }
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    max-height: 50px;
+    margin-right: 1rem;
+    img {
+      height: 100%;
+max-width: 100%;
+max-height: 100%;
+width: 100%;
+object-fit: cover;
+border-radius: 50%;
+    }
+  }
+  span {
+    font-weight: 300;
+  }
+
+}
+
+
+@media (min-width:968px) {
   .mainNav {
     display: flex;
     justify-content: space-between;
@@ -30,5 +71,5 @@
     .mainNavUl {
       width: 100%;
     }
+    }
   }
-}

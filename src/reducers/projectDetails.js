@@ -19,7 +19,6 @@ const fetchProjectDetails = (id) => {
     BackendAPI.getProjectDetails(id)
       .then((response) => {
         dispatch({ type: 'GET_DETAILS', payload: response.data });
-        dispatch({ type: 'HIDE_LOADER' });
       });
   };
 

@@ -24,6 +24,7 @@
   align-items: center;
   figure {
     width: 30%;
+    max-width: 100px;
   }
   img {
     width: 100%;
@@ -81,5 +82,34 @@
   }
   .orange {
     color: $orange
+  }
+}
+
+@media (min-width: 768px) {
+  .projectSection {
+    max-width: 968px;
+    margin: 0 auto;
+    margin-top: 3rem;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-wrap: wrap;
+   //box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    button {
+      position: static;
+    }
+
+    .projectImage {
+      max-height: calc(100vh - 200px);
+    }
+
+
+    .projectDetails {
+      background-color: #fff;
+    }
+    figure {
+      max-height: inherit;
+      border-radius: 10px;
+      overflow: hidden;
+    }
   }
 }

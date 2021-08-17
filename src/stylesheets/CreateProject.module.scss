@@ -100,3 +100,19 @@ textarea {
   font-size: 1rem;
   cursor: pointer;
 }
+
+
+@media(min-width: 768px) {
+
+  .mainSection {
+    max-width: 968px;
+    margin: 3rem auto;
+    background-color: #fff;
+    border-radius: 10px;
+
+    button {
+      position: static;
+      border-radius: 5px;
+    }
+  }
+}

@@ -7,11 +7,11 @@ import ProjectCard from '../components/ProjectCard';
 import styles from '../stylesheets/HomePage.module.scss';
 
 const HomePage = (props) => {
-  const { projects, getProjects } = props;
+  const { projects, getProjects, generateName } = props;
 
-  console.log(projects);
   useEffect(() => {
     getProjects();
+    generateName('Homepage');
   }, []);
 
   const projectList = projects.map((project) => <ProjectCard project={project} key={project.id} />);
@@ -32,6 +32,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getProjects: () => {
     dispatch(fetchProjects());
+  },
+  generateName: (name) => {
+    dispatch({ type: 'COMPONENT_NAME', payload: name });
   },
 });
 

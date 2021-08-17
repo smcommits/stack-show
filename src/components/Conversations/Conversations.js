@@ -24,11 +24,11 @@ const Conversations = (props) => {
   const [active, setActiveIndex] = useState(0);
   const [findUser, setFindUser] = useState(false);
 
-  console.log(conversations);
 
   const handleReceived = (response) => {
     const { conversation } = response;
     addConversation(conversation);
+    setActiveConversation(conversation.id)
   };
 
   const handleReceivedMessage = (response) => {
@@ -54,7 +54,6 @@ const Conversations = (props) => {
     setFindUser(false);
     BackendAPI.startConversation(title, sender_id, reciever_id)
       .then((res) => {
-        console.log(res);
       });
   };
 
@@ -73,7 +72,7 @@ const Conversations = (props) => {
           currentUser={currentUser}
         />
         )}
-        <div className={styles.inner} style={{transform: `translateX(-${active* 100}%)`}}>
+        <div className={styles.inner}>
           <section className={`${styles.conversationMain} ${styles.swipe}`}>
             <ConversationsList
               setActive={setActiveConversation}
@@ -81,6 +80,7 @@ const Conversations = (props) => {
               styles={styles}
               setActiveIndex={setActiveIndex}
               currentUser={currentUser}
+              findUser={setFindUser}
             />
           </section>
           <section className={`${styles.messageMain} ${styles.swipe}`}>
@@ -89,7 +89,6 @@ const Conversations = (props) => {
               handleReceived={handleReceivedMessage}
               styles={styles}
               setActiveIndex={setActiveIndex}
-              findUser={setFindUser}
             />
           </section>
         </div>

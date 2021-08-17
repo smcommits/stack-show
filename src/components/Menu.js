@@ -13,7 +13,7 @@ const Menu = (props) => {
   return (
 
     <nav className={`${styles.mainMenu} ${open && styles.show}`}>
-      <i className="las la-times displayMobileNone" onClick={menuHandler}/>
+      <i className="las la-times displayLgNone" onClick={menuHandler} />
       <section className={styles.userSection}>
         <img src={avatarPath || '/profile.png'} alt="user" />
         <p>{name.charAt(0).toUpperCase() + name.slice(1)}</p>
@@ -21,7 +21,8 @@ const Menu = (props) => {
       <ul>
         <li><Link to="/" onClick={menuHandler}>Home</Link></li>
         <li><Link to="/favorites" onClick={menuHandler}>Favorites</Link></li>
-        <li><Link to='/create' onClick={menuHandler}>Create Project</Link></li>
+        <li><Link to="/create" onClick={menuHandler}>Create Project</Link></li>
+        <li><Link to="/conversations">Conversations</Link></li>
         <li onClick={logOut}>Logout</li>
       </ul>
     </nav>

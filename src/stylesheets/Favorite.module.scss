@@ -1,4 +1,28 @@
 .mainSection {
-  display: grid;
-  grid-gap: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.placeholderText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 4rem;
+  width: 80%;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  h4 {
+    font-weight: 300;
+  }
+}
+
+@media(min-width: 768px) {
+  .mainSection {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+  }
 }

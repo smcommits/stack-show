@@ -6,6 +6,8 @@
   border-radius: 3px;
   overflow: hidden;
   figure {
+    max-height: 600px;
+    overflow: hidden;
     img {
       width: 100%;
     }

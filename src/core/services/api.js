@@ -14,6 +14,7 @@ const BackendAPI = (() => {
     createMessage: '/messages',
     userSearch: '/search/users',
     startConversation: '/conversations',
+    userUpdate: '/users/',
   };
 
   const baseConfig = {
@@ -183,6 +184,19 @@ const BackendAPI = (() => {
       return err;
     }
   };
+
+  const updateUser = async (id, params) => {
+    try {
+      const res = axios.put(endPoints.rootURI + endPoints.userUpdate + id, params);
+      return res;
+    } catch (err) {
+      if (err.response) {
+        return err.response;
+      }
+      return err;
+    }
+  };
+
   return {
     getAllProjects,
     createProject,
@@ -195,6 +209,7 @@ const BackendAPI = (() => {
     createMessage,
     searchUsers,
     startConversation,
+    updateUser,
   };
 })();
 

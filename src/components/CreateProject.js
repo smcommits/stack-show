@@ -1,13 +1,18 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import backendAPI from '../core/services/api';
 import Cloudinary from '../core/services/cloudinary';
 import styles from '../stylesheets/CreateProject.module.scss';
 import ImageUpload from './ImageUpload';
 
 const CreateProject = (props) => {
+  const { generateName } = props;
   const [projectsParams, setProjectParams] = useState({});
   const [imageUpload, setImageUpload] = useState('');
 
+  useEffect(() => {
+    generateName('Create Project');
+  }, []);
   const handleChange = (e) => {
     setProjectParams({
       ...projectsParams,
@@ -47,16 +52,11 @@ const CreateProject = (props) => {
   );
 };
 
-//  <form onSubmit={handleSubmit}>
-// <input onChange={handleChange} placeholder="title" type="text" name="title" />
-// <input onChange={handleChange} placeholder="description" type="text" name="description" />
-// <input onChange={handleChange} placeholder="github_url" type="text" name="github_url" />
-// <input onChange={handleChange} placeholder="live_demo" type="text" name="live_demo" />
-// {previewImage && <img src={previewImage} width="100%" />}
-// <input onChange={handleFile} type="file" accept="image" />
-// <input type="submit" />
-// </form>
+const mapDispatchToProps = (dispatch) => ({
+  generateName: (name) => {
+    dispatch({ type: 'COMPONENT_NAME', payload: name });
+  },
+});
 
-// <button onClick={handleSignature}>Testing</button>;
-
-export default CreateProject;
+const CreateProjectConnected = connect(null, mapDispatchToProps)(CreateProject);
+export default CreateProjectConnected;
