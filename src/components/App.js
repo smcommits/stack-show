@@ -14,7 +14,7 @@ import Nav from './Nav';
 import ProjectPage from '../containers/ProjectPage';
 import Favorites from '../containers/Favorites';
 import CreateProject from './CreateProject';
-import Conversations from   '../components/Conversations/Conversations'
+import Conversations from './Conversations/Conversations';
 
 const App = (props) => {
   const { currentUser, loading, performUserValidation } = props;

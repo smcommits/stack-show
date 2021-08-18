@@ -9,12 +9,12 @@ const addSubscriptionToMessage = (conversation, callback, connectedCallback) => 
 
 const subcribeToConversationChannel = (callback) => ActionCableManager.createSubscription({ channel: 'ConversationsChannel', recievedCallback: callback });
 
-const subcribeToMessageChannel = (conversations, callback) => conversations.map((conversation) => {
-  return addSubscriptionToMessage(conversation, callback);
-});
+const subcribeToMessageChannel = (conversations, callback) => conversations.map((conversation) => addSubscriptionToMessage(conversation, callback));
 
 const unsubscribeToMessageChannel = (channels) => {
-  channels.forEach((channel) => channel.unsubscribe())
-}
+  channels.forEach((channel) => channel.unsubscribe());
+};
 
-export { subcribeToMessageChannel, subcribeToConversationChannel, addSubscriptionToMessage , unsubscribeToMessageChannel};
+export {
+  subcribeToMessageChannel, subcribeToConversationChannel, addSubscriptionToMessage, unsubscribeToMessageChannel,
+};

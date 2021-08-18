@@ -2,7 +2,9 @@ import React from 'react';
 import InputField from './InputField';
 
 const SignUp = (props) => {
-  const { handleChange, handleSignUpSubmit, styles, errors} = props;
+  const {
+    handleChange, handleSignUpSubmit, styles, errors,
+  } = props;
   return (
     <form>
       <div className={styles.formText}>

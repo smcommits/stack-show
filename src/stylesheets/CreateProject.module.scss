@@ -101,7 +101,20 @@ textarea {
   cursor: pointer;
 }
 
+.success {
+  background-color: #9ce2b6;
+  color: #126d34;
+  padding: 1rem;
+  opacity: 0;
+  transition: all 1s;
 
+  
+}
+
+.showSuccess {
+    opacity: 1;
+    transition: all 1s;
+  }
 @media(min-width: 768px) {
 
   .mainSection {

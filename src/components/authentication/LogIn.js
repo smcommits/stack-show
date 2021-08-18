@@ -1,6 +1,7 @@
 import React from 'react';
 import InputField from './InputField';
-import styles from '../../stylesheets/AuthForm.module.scss'
+import styles from '../../stylesheets/AuthForm.module.scss';
+
 const LogIn = (props) => {
   const {
     handleChange, handleLogInSubmit, styles, errors,

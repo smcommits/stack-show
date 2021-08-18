@@ -21,10 +21,10 @@ const BackendAPI = (() => {
     withCredentials: true,
   };
 
-  const getAllProjects = async () => {
+  const getAllProjects = async (page) => {
     try {
       const res = await axios.get(
-        endPoints.rootURI + endPoints.allProjects,
+        endPoints.rootURI + endPoints.allProjects + `?page=${page}`,
         baseConfig,
       );
       return res;

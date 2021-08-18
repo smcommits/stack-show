@@ -3,8 +3,8 @@ import ActionCableManager from '../../core/helpers/actionCableHelper';
 
 const Cable = (props) => {
   const { channelName, params, onRecieved } = props;
-  console.log(channelName)
-  console.log(params)
+  console.log(channelName);
+  console.log(params);
   ActionCableManager.createSubscription({
     channel: channelName,
     recievedCallback: onRecieved,

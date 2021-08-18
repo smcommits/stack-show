@@ -41,7 +41,7 @@ const Cloudinary = (() => {
     data.append('signature', signature);
     data.append('upload_preset', 'mqymjapp');
 
-    const res = await axios.post(endPoints.uploadEndpoint, data, {withCredentials: false});
+    const res = await axios.post(endPoints.uploadEndpoint, data, { withCredentials: false });
 
     return res;
   };

@@ -44,10 +44,8 @@ const ImageUpload = (props) => {
 
   const handleDragDrop = (e) => {
     e.preventDefault();
-    console.log('dropped');
     e.stopPropagation();
     setDragging(false);
-    console.log(e);
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
       handleFile(e);
     }

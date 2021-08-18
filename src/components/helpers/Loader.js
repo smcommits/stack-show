@@ -7,7 +7,7 @@ const Loader = (props) => {
 
   if (!loading) return null;
 
-  const { width, height, margin } = propStyles;
+  const { width, height, margin } = propStyles || {};
   const dotStyle = {
     width: width || '1rem',
     height: height || '1rem',

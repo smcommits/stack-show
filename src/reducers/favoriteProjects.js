@@ -14,7 +14,6 @@ const fetchFavorites = () => {
     dispatch({ type: 'SHOW_LOADER' });
     BackendAPI.favoriteProjects()
       .then((response) => {
-        console.log(response.data);
         dispatch({ type: 'FETCH_FAVORITE_PROJECTS', payload: response.data });
         dispatch({ type: 'HIDE_LOADER' });
       });

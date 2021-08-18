@@ -30,20 +30,16 @@ const Nav = (props) => {
   return (
     <nav className={styles.mainNav}>
       <ul className={styles.mainNavUl}>
-        <i onClick={handleMenu} className="las la-bars displayLgNone" />
-        {isLarge
-        && (
-        <UserDetails
-          name={name}
-          imagePath={avatar_path}
-          styles={styles}
-          id={id}
-          updateImage={updateUserImage}
-        />
-        )}
+        <i onClick={handleMenu} className="las la-bars" />
         <h1 className={styles.parentName}>{componentName}</h1>
         <div className={styles.place} />
-        <Menu menuHandler={handleMenu} open={openMenu} logOut={logOut} />
+        <Menu
+          menuHandler={handleMenu}
+          open={openMenu}
+          logOut={logOut}
+          updateImage={updateUserImage}
+          propStyles={styles}
+        />
         <Search endpoint={BackendAPI.searchProject.bind(BackendAPI)} styles={searchStyles} />
       </ul>
 

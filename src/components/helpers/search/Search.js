@@ -27,7 +27,7 @@ const Search = (props) => {
   return (
     <div className={`${styles.searchWrapper} ${isOpen && styles.show}`}>
       <div className={`${styles.inputContainer} ${(isOpen && styles.show) || styles.hide}`}>
-        <input type="text" onChange={handleSearch}/>
+        <input type="text" onChange={handleSearch} />
       </div>
       {searchOrCloseButton()}
       {isOpen && (

@@ -32,4 +32,3 @@ export default function CustomSearchHook(query, endpoint) {
     loading, error, options,
   };
 }
-

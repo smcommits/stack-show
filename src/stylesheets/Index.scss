@@ -19,6 +19,10 @@ body {
   display: none;
 }
 
+.errorText {
+  color: $error-color;
+}
+
 
 @media (min-width: 768px) {
   .displayMobileNone {

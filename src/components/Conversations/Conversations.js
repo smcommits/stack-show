@@ -17,18 +17,17 @@ import Cable from './Cable';
 
 const Conversations = (props) => {
   const {
-    conversations, getAllConversations, addConversation, addMessage, currentUser,
+    conversations, getAllConversations, addConversation, addMessage, currentUser, generateName,
   } = props;
 
   const [activeConversation, setActiveConversation] = useState({});
   const [active, setActiveIndex] = useState(0);
   const [findUser, setFindUser] = useState(false);
 
-
   const handleReceived = (response) => {
     const { conversation } = response;
     addConversation(conversation);
-    setActiveConversation(conversation.id)
+    setActiveConversation(conversation.id);
   };
 
   const handleReceivedMessage = (response) => {
@@ -38,6 +37,7 @@ const Conversations = (props) => {
 
   useEffect(() => {
     getAllConversations();
+    generateName('Conversations');
   }, []);
 
   useEffect(() => {
@@ -111,6 +111,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   addMessage: (message) => {
     dispatch(addMessages(message));
+  },
+  generateName: (name) => {
+    dispatch({ type: 'COMPONENT_NAME', payload: name });
   },
 });
 

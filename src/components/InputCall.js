@@ -1,7 +1,7 @@
 import React from 'react';
 
 const InputCall = (props) => {
-  const { fileInputRef, styles, fileHandler} = props;
+  const { fileInputRef, styles, fileHandler } = props;
   return (
     <>
       <input type="file" ref={fileInputRef} style={{ display: 'none' }} onChange={fileHandler} />

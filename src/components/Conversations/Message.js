@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
-import BackendAPI from '../../core/services/api';
 import { DateTime } from 'luxon';
+import BackendAPI from '../../core/services/api';
 
 const Message = (props) => {
   const {
-    conversation, currentUser, styles, setActiveIndex, 
+    conversation, currentUser, styles, setActiveIndex,
   } = props;
   const { messages } = conversation || {};
 
@@ -46,13 +46,11 @@ const Message = (props) => {
   };
 
   const handleSubmit = (e) => {
-    e.target.firstElementChild.value=""
+    e.target.firstElementChild.value = '';
     e.preventDefault();
     BackendAPI.createMessage(text, conversation.id, currentUser.id).then((res) => {
     });
   };
-
-  
 
   const sender = conversation.users.find((user) => user.id !== currentUser.id);
   if (!sender) {

@@ -6,7 +6,7 @@ import styles from '../stylesheets/ProjectCard.module.scss';
 import Rating from './Rating';
 
 const ProjectCard = (props) => {
-  const { project } = props;
+  const { project, reference } = props;
   const {
     title,
     image_path: imagePath,
@@ -16,16 +16,18 @@ const ProjectCard = (props) => {
     id,
   } = project;
 
+  console.log(reference)
+  const ref = reference || null;
+
   const isLarge = useMediaQuery({
     query: '(min-width: 968px)',
   });
 
-  console.log(project);
   const projectLink = `/project/${id}`;
 
   const stackListElements = stackList.map((stack) => <li key={Math.random()}>{stack}</li>);
   return (
-    <div className={styles.projectCard}>
+    <div className={styles.projectCard} ref={ref}>
       <Link to={projectLink}>
         <figure>
           <Image cloudName="dfsniizqr" publicId={imagePath}>

@@ -1,3 +1,4 @@
+@import './Variables.scss';
 .projectCard {
   width: 80%;
   background: #fff;
@@ -20,6 +21,10 @@
   align-items: flex-start;
   padding: 1rem;
 
+  a {
+    text-decoration: none;
+    color: $black;
+  }
   .leftDetails {
     width: 70%;
   }

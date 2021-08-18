@@ -7,13 +7,13 @@ const AuthForm = (props) => {
   const [formType, setFormType] = useState('signUp');
 
   const {
-    styles, 
-    handleChange, 
-    handleLogInSubmit, 
-    validateSignUp, 
-    signUpErrors, 
-    validateLogin, 
-    logInErrors
+    styles,
+    handleChange,
+    handleLogInSubmit,
+    validateSignUp,
+    signUpErrors,
+    validateLogin,
+    logInErrors,
   } = props;
 
   const switchForm = (e) => {

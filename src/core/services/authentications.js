@@ -67,11 +67,9 @@ const Auth = (() => {
         endPoints.rootURI + endPoints.validateUser,
         baseConfig,
       );
-      console.log(res.data);
       return { ...res.data };
     } catch (err) {
       if (err.response) {
-        console.log(err.response.data);
         return { ...err.response.data };
       }
       return err;

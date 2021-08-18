@@ -5,12 +5,12 @@ import { fetchFavorites } from '../reducers/favoriteProjects';
 import styles from '../stylesheets/Favorite.module.scss';
 
 const Favorites = (props) => {
-  const { favoriteProjects, getFavorites, generateName } = props
+  const { favoriteProjects, getFavorites, generateName } = props;
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getFavorites();
-    generateName('Favorites')
+    generateName('Favorites');
   }, []);
 
   const favoriteProjectsList = favoriteProjects.map((project) => <ProjectCard project={project} key={project.id} />);

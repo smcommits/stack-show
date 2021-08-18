@@ -16,10 +16,10 @@ const ConversationsList = (props) => {
     findUser(true);
   };
   const conversationList = conversations.map((conversation) => {
-    //    messageSubscriber(conversation)
-    const lastMessage = conversation.messages[conversation.messages.length - 1];
+    const lastMessage = conversation.messages[conversation.messages.length - 1] || {};
     const previewText = lastMessage ? lastMessage.text : '';
-    const dateTime = lastMessage ? DateTime.fromISO(lastMessage.created_at).toLocaleString(DateTime.DATE_MED) : '';
+    const time = lastMessage.created_at;
+    const dateTime = time ? DateTime.fromISO(time).toLocal().c : '';
 
     const sender = conversation.users.find((user) => user.id !== currentUser.id);
     if (!sender) {
@@ -32,11 +32,20 @@ const ConversationsList = (props) => {
           setActiveIndex(1);
         }}
         key={conversation.id}
+        className={styles.convText}
       >
         <figure>
           <img src={conversation.users[0].image || '/profile.png'} alt="" />
         </figure>
-        <span>{sender.name}</span>
+        <div className={styles.right}>
+          <div className={styles.top}>
+            <span>{sender.name}</span>
+            <span className={styles.secondaryInfo}>{`${dateTime.hour}:${dateTime.minute}`}</span>
+          </div>
+          <div className={`${styles.secondaryInfo} ${styles.previewText}`}>
+            {previewText}
+          </div>
+        </div>
       </li>
     );
   });
@@ -46,7 +55,7 @@ const ConversationsList = (props) => {
       <li className={styles.header}>
         <h4>All Coversations</h4>
         <button type="submit" onClick={newChat}>
-          <i class="las la-plus"></i>
+          <i className="las la-plus" />
         </button>
       </li>
       {conversationList}
