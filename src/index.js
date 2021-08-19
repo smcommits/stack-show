@@ -4,21 +4,24 @@ import thunkMiddleware from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import ActionCable from 'actioncable';
+import ActionCableProvider from 'react-actioncable-provider';
 import rootReducer from './reducers/index';
 import App from './components/App';
 import './stylesheets/Index.scss';
 import { validateUser } from './reducers/sessionReducer';
 
-const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware));
+const composedEnhancer = applyMiddleware(thunkMiddleware);
 // const composedEnhancer = applyMiddleware(thunkMiddleware);
 const store = createStore(rootReducer, composedEnhancer);
+const cable = ActionCable.createConsumer('ws://localhost:5000/cable');
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
+    <ActionCableProvider cable={cable}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </ActionCableProvider>, 
   document.getElementById('root'),
 );
 

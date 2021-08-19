@@ -16,12 +16,14 @@
   .fieldWrapper {
     margin: 1rem 0;
     display: block;
+
     p {
       font-size: 12px;
       color: #da1414;
       padding-bottom: 0.3rem;
     }
   }
+
   form {
     text-align: center;
 
@@ -49,16 +51,18 @@
       &:hover {
         background: $orange-light;
       }
+
       &:active {
         background: $orange;
       }
     }
   }
 }
+
 .formError {
-      font-size: 12px;
-      color: #da1414;
-      padding: 0.3rem 0;
+  font-size: 12px;
+  color: #da1414;
+  padding: 0.3rem 0;
 }
 
 .tabbedNav {
@@ -66,12 +70,14 @@
   list-style: none;
   width: 100%;
   padding: 2rem 0;
+
   li {
     flex-basis: 50%;
+
     button {
       width: 100%;
       border: none;
-      padding: 1rem
+      padding: 1rem;
     }
   }
 }

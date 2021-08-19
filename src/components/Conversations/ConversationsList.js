@@ -1,5 +1,6 @@
 import React from 'react';
 import { DateTime } from 'luxon';
+import { useMediaQuery } from 'react-responsive';
 
 const ConversationsList = (props) => {
   const {
@@ -11,6 +12,10 @@ const ConversationsList = (props) => {
     currentUser,
     findUser,
   } = props;
+
+  const isLarge = useMediaQuery({
+    query: '(min-width: 968px)',
+  });
 
   const newChat = () => {
     findUser(true);
@@ -26,6 +31,7 @@ const ConversationsList = (props) => {
       return null;
     }
     return (
+
       <li
         onClick={() => {
           setActive(conversation.id);
@@ -40,11 +46,14 @@ const ConversationsList = (props) => {
         <div className={styles.right}>
           <div className={styles.top}>
             <span>{sender.name}</span>
-            <span className={styles.secondaryInfo}>{`${dateTime.hour}:${dateTime.minute}`}</span>
+            {isLarge && dateTime && <span className={styles.secondaryInfo}>{`${dateTime.hour}:${dateTime.minute}`}</span>}
           </div>
+          {isLarge && previewText
+          && (
           <div className={`${styles.secondaryInfo} ${styles.previewText}`}>
             {previewText}
           </div>
+          )}
         </div>
       </li>
     );

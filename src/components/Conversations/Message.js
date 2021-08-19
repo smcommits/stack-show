@@ -59,15 +59,17 @@ const Message = (props) => {
 
   return (
     <>
+
       <div className={styles.userDetail}>
-        <div className={styles.text}>
-          <figure>
-            <img src={sender.image || '/profile.png'} alt="" />
-          </figure>
-          <span>{sender.name}</span>
+          <div className={styles.text}>
+            <figure>
+              <img src={sender.image || '/profile.png'} alt="" />
+            </figure>
+            <span>{sender.name}</span>
+          </div>
         </div>
-      </div>
       <ul className={styles.messageList}>
+        
         {messageList}
         <li ref={endDiv} />
       </ul>

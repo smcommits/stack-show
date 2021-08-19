@@ -17,7 +17,7 @@ const FindUser = (props) => {
   };
 
   const conversationHandler = (e) => {
-    const reciever_id = e.currentTarget.dataset.attribute;
+    const reciever_id = Number(e.currentTarget.dataset.attribute);
     const sender_id = currentUser.id;
     handleConversation('text', sender_id, reciever_id);
   };

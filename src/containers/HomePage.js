@@ -17,13 +17,12 @@ const HomePage = (props) => {
 
   const [page, setPage] = useState(2);
 
-  console.log(page);
   const observer = useRef();
 
   useEffect(() => {
-    if (Object.keys(projects).length) return null;
-    getProjects(1);
     generateName('Homepage');
+    if (projects.length) return null;
+    getProjects(1);
   }, []);
 
   const lastProjectElement = useCallback((element) => {

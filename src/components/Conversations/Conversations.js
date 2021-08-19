@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { ActionCableConsumer } from 'react-actioncable-provider';
 import Message from './Message';
+import MessageCable from './MessageCable';
 import BackendAPI from '../../core/services/api';
 import styles from '../../stylesheets/Conversations.module.scss';
 import { fetchConversations, addMessages } from '../../reducers/conversationReducer';
+import conversationExists from '../helpers/conversationComponentHelper';
 import {
   subcribeToMessageChannel,
   subcribeToConversationChannel,
   unsubscribeToMessageChannel,
 } from '../../core/helpers/ConversationHelper';
-import MessageCable from './MessageCable';
 import ActionCableManager from '../../core/helpers/actionCableHelper';
 import FindUser from './FindUser';
 import ConversationsList from './ConversationsList';
@@ -17,7 +19,12 @@ import Cable from './Cable';
 
 const Conversations = (props) => {
   const {
-    conversations, getAllConversations, addConversation, addMessage, currentUser, generateName,
+    conversations,
+    getAllConversations,
+    addConversation,
+    addMessage,
+    currentUser,
+    generateName,
   } = props;
 
   const [activeConversation, setActiveConversation] = useState({});
@@ -37,21 +44,32 @@ const Conversations = (props) => {
 
   useEffect(() => {
     getAllConversations();
-    generateName('Conversations');
   }, []);
 
   useEffect(() => {
     const conversationChannel = subcribeToConversationChannel(handleReceived);
     const messageChannels = subcribeToMessageChannel(conversations, handleReceivedMessage);
-
+    console.log('sub');
     return function cleanup() {
+      console.log('cleanup');
       conversationChannel.unsubscribe();
       unsubscribeToMessageChannel(messageChannels);
     };
   });
 
+  // const conversationExists = () => {
+  // return conversations.find((conversation))
+  // }
+
   const handleConversation = (title, sender_id, reciever_id) => {
     setFindUser(false);
+    const conversation = conversationExists(conversations, sender_id, reciever_id);
+    console.log(conversation)
+    if (conversation) {
+      console.log('he')
+      setActiveConversation(conversation.id);
+      return null;
+    }
     BackendAPI.startConversation(title, sender_id, reciever_id)
       .then((res) => {
       });
@@ -72,7 +90,9 @@ const Conversations = (props) => {
           currentUser={currentUser}
         />
         )}
+
         <div className={styles.inner}>
+
           <section className={`${styles.conversationMain} ${styles.swipe}`}>
             <ConversationsList
               setActive={setActiveConversation}

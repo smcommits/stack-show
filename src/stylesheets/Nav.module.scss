@@ -15,13 +15,14 @@
   .place {
     width: 24px;
   }
+
   .mainNavUl {
     list-style: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
-    
+
     i {
       font-size: 24px;
       color: #989898;
@@ -30,8 +31,7 @@
   }
 }
 
-
-@media (min-width:968px) {
+@media (min-width: 968px) {
   .mainNav {
     display: flex;
     justify-content: space-between;
@@ -44,5 +44,5 @@
     .mainNavUl {
       width: 100%;
     }
-    }
   }
+}

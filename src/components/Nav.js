@@ -40,7 +40,6 @@ const Nav = (props) => {
           updateImage={updateUserImage}
           propStyles={styles}
         />
-        <Search endpoint={BackendAPI.searchProject.bind(BackendAPI)} styles={searchStyles} />
       </ul>
 
     </nav>

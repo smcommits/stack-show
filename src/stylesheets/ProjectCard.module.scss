@@ -1,14 +1,17 @@
 @import './Variables.scss';
+
 .projectCard {
   width: 80%;
   background: #fff;
   margin: 1rem auto;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0 4px 16px, rgba(17, 17, 26, 0.05) 0 8px 32px;
   border-radius: 3px;
   overflow: hidden;
+
   figure {
     max-height: 600px;
     overflow: hidden;
+
     img {
       width: 100%;
     }
@@ -25,11 +28,14 @@
     text-decoration: none;
     color: $black;
   }
+
   .leftDetails {
     width: 70%;
   }
+
   .rightDetails {
     text-align: right;
+
     span {
       font-size: 12px;
     }
@@ -41,14 +47,14 @@
   }
 }
 
-@media(min-width: 768px) {
+@media (min-width: 768px) {
   .projectCard {
     flex-basis: 48%;
   }
 }
 
-@media(min-width: 992px) {
+@media (min-width: 992px) {
   .projectCard {
-    flex-basis: 30%
+    flex-basis: 30%;
   }
 }

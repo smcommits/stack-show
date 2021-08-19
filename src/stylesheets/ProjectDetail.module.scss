@@ -8,8 +8,6 @@
   img {
     width: 100%;
   }
-
-
 }
 
 .main {
@@ -22,22 +20,25 @@
   left: 20px;
   bottom: 20px;
   align-items: center;
+
   figure {
     width: 30%;
     max-width: 100px;
   }
+
   img {
     width: 100%;
     border-radius: 50%;
   }
 
   .overlayText {
-    margin-left: .5rem;
+    margin-left: 0.5rem;
   }
 }
 
 .projectDetails {
   padding: 1rem 2rem;
+
   p {
     margin-top: 1.5rem;
     text-align: left;
@@ -70,18 +71,22 @@
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
+
   div {
     display: flex;
     align-items: center;
   }
+
   span {
-    margin-right: .5rem;
+    margin-right: 0.5rem;
   }
+
   i {
     font-size: 24px;
   }
+
   .orange {
-    color: $orange
+    color: $orange;
   }
 }
 
@@ -93,7 +98,7 @@
     border-radius: 10px;
     overflow: hidden;
     flex-wrap: wrap;
-   //box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    //box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     button {
       position: static;
     }
@@ -102,10 +107,10 @@
       max-height: calc(100vh - 200px);
     }
 
-
     .projectDetails {
       background-color: #fff;
     }
+
     figure {
       max-height: inherit;
       border-radius: 10px;
