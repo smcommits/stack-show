@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const InputCall = (props) => {
   const { fileInputRef, styles, fileHandler } = props;
@@ -15,6 +16,12 @@ const InputCall = (props) => {
       </div>
     </>
   );
+};
+
+InputCall.propTypes = {
+  fileInputRef: PropTypes.func.isRequired,
+  styles: PropTypes.instanceOf(Object).isRequired,
+  fileHandler: PropTypes.func.isRequired,
 };
 
 export default InputCall;

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import ProjectDetail from '../components/ProjectDetails';
+import ProjectDetail from './ProjectDetails';
 
-const ProjectPage = (props) => {
+const ProjectPage = () => {
   const { id } = useParams();
   return (
     <ProjectDetail id={id} />

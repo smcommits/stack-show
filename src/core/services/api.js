@@ -24,7 +24,7 @@ const BackendAPI = (() => {
   const getAllProjects = async (page) => {
     try {
       const res = await axios.get(
-        endPoints.rootURI + endPoints.allProjects + `?page=${page}`,
+        `${endPoints.rootURI + endPoints.allProjects}?page=${page}`,
         baseConfig,
       );
       return res;
@@ -164,6 +164,7 @@ const BackendAPI = (() => {
       if (err.response) {
         return err.response;
       }
+      return (err);
     }
   };
 

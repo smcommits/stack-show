@@ -1,27 +1,15 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { useMediaQuery } from 'react-responsive';
+import PropTypes from 'prop-types';
 import { logOutUser } from '../reducers/sessionReducer';
 import styles from '../stylesheets/Nav.module.scss';
-import Search from './helpers/search/Search';
 import Menu from './Menu';
-import BackendAPI from '../core/services/api';
-import searchStyles from '../stylesheets/Search.module.scss';
-import UserDetails from './helpers/UserDetails';
 
 const Nav = (props) => {
   const {
-    currentUser, logOut, componentName, updateUserImage,
+    logOut, componentName, updateUserImage,
   } = props;
   const [openMenu, setOpenMenu] = useState(false);
-  const handleLogout = () => {
-    logOut();
-  };
-
-  const isLarge = useMediaQuery({
-    query: '(min-width: 968px)',
-  });
-  const { name, avatar_path, id } = currentUser;
 
   const handleMenu = () => {
     setOpenMenu(!openMenu);
@@ -30,7 +18,7 @@ const Nav = (props) => {
   return (
     <nav className={styles.mainNav}>
       <ul className={styles.mainNavUl}>
-        <i onClick={handleMenu} className="las la-bars" />
+        <i onClick={handleMenu} className="las la-bars" role="presentation" />
         <h1 className={styles.parentName}>{componentName}</h1>
         <div className={styles.place} />
         <Menu
@@ -44,6 +32,12 @@ const Nav = (props) => {
 
     </nav>
   );
+};
+
+Nav.propTypes = {
+  logOut: PropTypes.func.isRequired,
+  componentName: PropTypes.string.isRequired,
+  updateUserImage: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

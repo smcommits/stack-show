@@ -2,9 +2,7 @@ import React, {
   useState, useEffect, useRef, useCallback,
 } from 'react';
 import { connect } from 'react-redux';
-import CreateProject from '../components/CreateProject';
-import BackendAPI from '../core/services/api';
-
+import PropTypes from 'prop-types';
 import { fetchProjects } from '../reducers/project';
 import ProjectCard from '../components/ProjectCard';
 import styles from '../stylesheets/HomePage.module.scss';
@@ -23,6 +21,7 @@ const HomePage = (props) => {
     generateName('Homepage');
     if (projects.length) return null;
     getProjects(1);
+    return null;
   }, []);
 
   const lastProjectElement = useCallback((element) => {
@@ -47,7 +46,7 @@ const HomePage = (props) => {
 
   return (
     <>
-      <button className={styles.backToTop} onClick={handleTop}><i className="las la-angle-up" /></button>
+      <button aria-label="backToTop" type="button" className={styles.backToTop} onClick={handleTop}><i className="las la-angle-up" /></button>
       <div className={styles.loader}>
         <Loader loading={loading} />
       </div>
@@ -56,6 +55,13 @@ const HomePage = (props) => {
       </section>
     </>
   );
+};
+
+HomePage.propTypes = {
+  projects: PropTypes.func.isRequired,
+  getProjects: PropTypes.func.isRequired,
+  generateName: PropTypes.func.isRequired,
+  loading: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

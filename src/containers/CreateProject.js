@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import backendAPI from '../core/services/api';
 import Cloudinary from '../core/services/cloudinary';
 import styles from '../stylesheets/CreateProject.module.scss';
-import ImageUpload from './ImageUpload';
-import Loader from './helpers/Loader';
-import { handleErrors, clearInputs } from './helpers/createProjectHelpers';
+import ImageUpload from '../components/ImageUpload';
+import Loader from '../components/helpers/Loader';
+import { handleErrors, clearInputs } from '../components/helpers/createProjectHelpers';
 
 const CreateProject = (props) => {
   const { generateName } = props;
@@ -29,7 +30,7 @@ const CreateProject = (props) => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async () => {
     const res = await backendAPI.createProject(projectsParams);
     return res;
   };
@@ -40,7 +41,7 @@ const CreateProject = (props) => {
     Cloudinary.uploadImage(imageUpload).then((res) => {
       setProjectParams({
         ...projectsParams,
-        image_path: res.data.secure_url,
+        image_path: res.data.public_id,
       });
     });
   };
@@ -74,7 +75,7 @@ const CreateProject = (props) => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return null;
     }
-    uploadImage(e);
+    return uploadImage(e);
   };
 
   return (
@@ -105,6 +106,10 @@ const CreateProject = (props) => {
       </form>
     </section>
   );
+};
+
+CreateProject.propTypes = {
+  generateName: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

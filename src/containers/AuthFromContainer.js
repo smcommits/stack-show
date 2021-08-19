@@ -1,20 +1,15 @@
 import { useState } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-
-import Auth from '../../core/services/authentications';
-import styles from '../../stylesheets/AuthForm.module.scss';
-import { validateSignUpForm, validateLoginForm } from './validate';
-import AuthForm from './AuthForm';
+import PropTypes from 'prop-types';
+import Auth from '../core/services/authentications';
+import styles from '../stylesheets/AuthForm.module.scss';
+import { validateSignUpForm, validateLoginForm } from '../components/authentication/validate';
+import AuthForm from '../components/authentication/AuthForm';
 
 const AuthFormContainer = (props) => {
   const { setCurrentUser } = props;
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirm_password: '',
-  });
+  const [formData, setFormData] = useState({});
 
   const [signUpErrors, setSignUpErrors] = useState({});
   const [logInErrors, setLoginErrors] = useState({});
@@ -83,6 +78,10 @@ const AuthFormContainer = (props) => {
       />
     </>
   );
+};
+
+AuthFromContainer.propTypes = {
+  setCurrentUser: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

@@ -7,7 +7,7 @@ const sessionReducer = (state = '', action) => {
     case ('SET_CURRENT_USER_FALSE'):
       return '';
     case ('UPDATE_USER_IMAGE'):
-      return { ...state, avatar_path: action.payload };
+      return { ...state, image: action.payload };
     default:
       return state;
   }

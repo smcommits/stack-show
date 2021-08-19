@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import Search from '../helpers/search/Search';
-import searchStyles from '../../stylesheets/Search.module.scss';
+import { Image, Transformation } from 'cloudinary-react';
+import PropTypes from 'prop-types';
 import styles from '../../stylesheets/Conversations.module.scss';
 import BackendAPI from '../../core/services/api';
 import CustomSearchHook from '../helpers/search/CustomSearchHook';
+import Loader from '../helpers/Loader';
 
 const FindUser = (props) => {
   const { findUser, handleConversation, currentUser } = props;
   const [query, setQuery] = useState('');
-
-  const [isOpen, setIsOpen] = useState(false);
   const { options, loading } = CustomSearchHook(query, BackendAPI.searchUsers.bind(BackendAPI));
 
   const handleSearch = (e) => {
@@ -17,36 +16,49 @@ const FindUser = (props) => {
   };
 
   const conversationHandler = (e) => {
-    const reciever_id = Number(e.currentTarget.dataset.attribute);
-    const sender_id = currentUser.id;
-    handleConversation('text', sender_id, reciever_id);
+    const recieverId = Number(e.currentTarget.dataset.attribute);
+    const senderId = currentUser.id;
+    handleConversation('text', senderId, recieverId);
   };
 
   const searchOptions = options.map((option) => (
-    <li key={Math.random()} className={styles.searchItem} onClick={conversationHandler} data-attribute={option.id}>
+    <li
+      key={Math.random()}
+      className={styles.searchItem}
+      onClick={conversationHandler}
+      data-attribute={option.id}
+      role="presentation"
+    >
       <figure>
-        <img src={option.image || './profile.png'} alt="user" />
+
+        <Image cloudName="dfsniizqr" publicId={option.image}>
+          <Transformation gravity="face" height="100" width="100" crop="fill" />
+        </Image>
+
       </figure>
       <strong>{option.name}</strong>
     </li>
   ));
-
-  const toggleSearch = () => {
-    setIsOpen(!isOpen);
-  };
 
   const toggleSelf = () => {
     findUser(false);
   };
   return (
     <section className={styles.findUser}>
-      <i className="las la-times" onClick={toggleSelf} />
+      <i className="las la-times" onClick={toggleSelf} role="presentation" />
       <input type="" onChange={handleSearch} placeholder="Find a user" />
       <ul>
         {searchOptions}
+        <li className={styles.loader}><Loader loading={loading} /></li>
       </ul>
     </section>
   );
+};
+
+FindUser.propTypes = {
+  findUser: PropTypes.func.isRequired,
+  handleConversation: PropTypes.func.isRequired,
+  currentUser: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default FindUser;

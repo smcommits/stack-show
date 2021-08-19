@@ -28,6 +28,7 @@ const Loader = (props) => {
 Loader.propTypes = {
   loading: PropTypes.bool.isRequired,
   absoluteStyle: PropTypes.instanceOf(Object),
+  propStyles: PropTypes.instanceOf(Object).isRequired,
 };
 
 Loader.defaultProps = {

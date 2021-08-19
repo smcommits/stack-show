@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import CustomSearchHook from './CustomSearchHook';
 import SearchItem from './SearchItem';
+import Loader from '../Loader';
 
 const Search = (props) => {
-  const { parent, endpoint, styles } = props;
+  const { endpoint, styles } = props;
   const [query, setQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-  const isParentActor = parent === 'actorPage';
 
   const { options, loading } = CustomSearchHook(query, endpoint);
   const handleSearch = (e) => {
@@ -19,10 +19,13 @@ const Search = (props) => {
     setIsOpen(!isOpen);
   };
 
-  const searchOrCloseButton = () => (isOpen ? <i onClick={toggleSearch} className={`las la-times ${styles.searchToggle}`} />
-    : <i onClick={toggleSearch} className={`las la-search ${styles.searchToggle}`} />);
+  const searchOrCloseButton = () => (
+    isOpen ? <i onClick={toggleSearch} className={`las la-times ${styles.searchToggle}`} role="presentation" />
+      : <i onClick={toggleSearch} className={`las la-search ${styles.searchToggle}`} role="presentation" />);
 
-  const optionsList = options.map((option) => (<SearchItem key={option.id} option={option} toggleSearch={toggleSearch} />));
+  const optionsList = options.map(
+    (option) => (<SearchItem key={option.id} option={option} toggleSearch={toggleSearch} />),
+  );
 
   return (
     <div className={`${styles.searchWrapper} ${isOpen && styles.show}`}>
@@ -33,6 +36,7 @@ const Search = (props) => {
       {isOpen && (
         <ul className={styles.searchList}>
           {optionsList}
+          <Loader loading={loading} />
         </ul>
       )}
     </div>
@@ -40,6 +44,8 @@ const Search = (props) => {
 };
 
 Search.propTypes = {
-  parent: PropTypes.string.isRequired,
+  endpoint: PropTypes.string.isRequired,
+  styles: PropTypes.instanceOf(Object).isRequired,
 };
+
 export default Search;

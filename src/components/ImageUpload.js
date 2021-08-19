@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
-
+import PropTypes from 'prop-types';
 import InputCall from './InputCall';
 
 const ImageUpload = (props) => {
-  const { fileHandler, setImageUpload, styles } = props;
+  const { setImageUpload, styles } = props;
   const [dragging, setDragging] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
   const dragRef = useRef();
@@ -62,12 +62,13 @@ const ImageUpload = (props) => {
           onDragLeave={handleDragLeave}
           onDragOver={handleDragOver}
           onDrop={handleDragDrop}
+          role="presentation"
         >
           {previewImage
           && (
           <div className={styles.previewContainer}>
             <img src={previewImage} alt="" className={styles.previewImage} />
-            <i className={`las la-trash-alt ${styles.previewRemover}`} onClick={handleFileRemove} />
+            <i className={`las la-trash-alt ${styles.previewRemover}`} onClick={handleFileRemove} role="presentation" />
           </div>
           )}
           {!previewImage && (
@@ -82,6 +83,11 @@ const ImageUpload = (props) => {
       </div>
     </>
   );
+};
+
+ImageUpload.propTypes = {
+  setImageUpload: PropTypes.func.isRequired,
+  styles: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default ImageUpload;

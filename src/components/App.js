@@ -7,14 +7,14 @@ import {
 } from 'react-router-dom';
 import { validateUser } from '../reducers/sessionReducer';
 
-import AuthFormContainer from './authentication/AuthFromContainer';
+import AuthFormContainer from '../containers/AuthFromContainer';
 import HomePage from '../containers/HomePage';
-import Loader from './Loader';
-import Nav from './Nav';
+import Loader from './helpers/Loader';
+import Nav from '../containers/Nav';
 import ProjectPage from '../containers/ProjectPage';
 import Favorites from '../containers/Favorites';
-import CreateProject from './CreateProject';
-import Conversations from './Conversations/Conversations';
+import CreateProject from '../containers/CreateProject';
+import Conversations from '../containers/Conversations';
 
 const App = (props) => {
   const { currentUser, loading, performUserValidation } = props;

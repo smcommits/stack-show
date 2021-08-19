@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import InputField from './InputField';
 
 const SignUp = (props) => {
@@ -47,6 +48,13 @@ const SignUp = (props) => {
       <button onClick={handleSignUpSubmit} type="submit">Sign Up</button>
     </form>
   );
+};
+
+SignUp.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  handleSignUpSubmit: PropTypes.func.isRequired,
+  styles: PropTypes.instanceOf(Object).isRequired,
+  errors: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default SignUp;

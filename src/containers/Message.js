@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { DateTime } from 'luxon';
-import BackendAPI from '../../core/services/api';
+import { Image, Transformation } from 'cloudinary-react';
+import PropTypes from 'prop-types';
+import BackendAPI from '../core/services/api';
 
 const Message = (props) => {
   const {
-    conversation, currentUser, styles, setActiveIndex,
+    conversation, currentUser, styles,
   } = props;
   const { messages } = conversation || {};
 
@@ -37,10 +39,6 @@ const Message = (props) => {
     );
   });
 
-  const handleActive = () => {
-    setActiveIndex(0);
-  };
-
   const handleChange = (e) => {
     setText(e.target.value);
   };
@@ -48,8 +46,7 @@ const Message = (props) => {
   const handleSubmit = (e) => {
     e.target.firstElementChild.value = '';
     e.preventDefault();
-    BackendAPI.createMessage(text, conversation.id, currentUser.id).then((res) => {
-    });
+    BackendAPI.createMessage(text, conversation.id, currentUser.id).then((res) => res);
   };
 
   const sender = conversation.users.find((user) => user.id !== currentUser.id);
@@ -61,24 +58,37 @@ const Message = (props) => {
     <>
 
       <div className={styles.userDetail}>
-          <div className={styles.text}>
-            <figure>
-              <img src={sender.image || '/profile.png'} alt="" />
-            </figure>
-            <span>{sender.name}</span>
-          </div>
+        <div className={styles.text}>
+          <figure>
+
+            <Image cloudName="dfsniizqr" publicId={sender.image}>
+              <Transformation gravity="face" height="100" width="100" crop="fill" />
+            </Image>
+
+          </figure>
+          <span>{sender.name}</span>
         </div>
+      </div>
       <ul className={styles.messageList}>
-        
+
         {messageList}
         <li ref={endDiv} />
       </ul>
       <form action="" className={styles.messageForm} onSubmit={handleSubmit}>
         <input onChange={handleChange} type="text" placeholder="Send a message" />
-        <button type="submit" className={styles.sendButton}><i className="lar la-paper-plane" /></button>
+        <button type="submit" aria-label="send message" className={styles.sendButton}>
+          <i className="lar la-paper-plane" />
+        </button>
       </form>
     </>
   );
+};
+
+Message.propTypes = {
+  conversation: PropTypes.instanceOf(Object).isRequired,
+  currentUser: PropTypes.instanceOf(Object).isRequired,
+  styles: PropTypes.instanceOf(Object).isRequired,
+
 };
 
 const mapStateToProps = (state) => ({

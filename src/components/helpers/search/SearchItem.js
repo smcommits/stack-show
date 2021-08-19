@@ -20,6 +20,7 @@ const SearchItem = (props) => {
 
 SearchItem.propTypes = {
   option: PropTypes.instanceOf(Object).isRequired,
+  toggleSearch: PropTypes.func.isRequired,
 };
 
 export default SearchItem;

@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { Image, Transformation } from 'cloudinary-react';
+import PropTypes from 'prop-types';
 import Cloudinary from '../../core/services/cloudinary';
 import BackendAPI from '../../core/services/api';
 import Loader from './Loader';
@@ -8,7 +9,6 @@ const UserDetails = (props) => {
   const {
     styles, imagePath, name, id, updateImage,
   } = props;
-  const [imageUpload, setImageUpload] = useState();
   const [loading, setLoading] = useState(false);
   const fileInputRef = useRef();
 
@@ -16,11 +16,15 @@ const UserDetails = (props) => {
     if (fileInputRef.current === null) return;
     fileInputRef.current.click();
   };
+  const loaderStyles = {
+    width: '5px',
+    height: '5px',
+    margin: '2px',
+  };
 
   const uploadImage = async (file) => {
-    if (!file) return;
+    if (!file) return null;
     const res = await Cloudinary.uploadImage(file);
-
     return res;
   };
   const handleFile = async (event) => {
@@ -28,9 +32,9 @@ const UserDetails = (props) => {
     setLoading(true);
     const res = await uploadImage(file);
     if (res.status === 200) {
-      const response = await BackendAPI.updateUser(id, { image: res.data.secure_url });
+      const response = await BackendAPI.updateUser(id, { image: res.data.public_id });
       if (response.status === 200) {
-        updateImage(res.data.secure_url);
+        updateImage(res.data.public_id);
         setLoading(false);
       }
     }
@@ -39,30 +43,28 @@ const UserDetails = (props) => {
   return (
 
     <div className={styles.userDetails}>
-      <figure onClick={openFileInput}>
+      <figure onClick={openFileInput} role="presentation">
         <div className={styles.loader}>
-          <Loader
-            loading={loading}
-            propStyles={{
-              width: '5px',
-              height: '5px',
-              margin: '2px',
-            }}
-          />
+          <Loader loading={loading} propStyles={loaderStyles} />
         </div>
-        {(imagePath
-          && (
+        {(imagePath && (
           <Image cloudName="dfsniizqr" publicId={imagePath}>
-            <Transformation gravity="face" height="50" width="50" crop="fill" />
+            <Transformation gravity="face" height="100" width="100" crop="fill" />
           </Image>
-          ))
-            || <img src="/profile.png" alt="user" />}
-
+        )) || <img src="/profile.png" alt="user" />}
       </figure>
       <span>{name.charAt(0).toUpperCase() + name.slice(1)}</span>
       <input type="file" ref={fileInputRef} style={{ display: 'none' }} onChange={handleFile} />
     </div>
   );
+};
+
+UserDetails.propTypes = {
+  styles: PropTypes.instanceOf(Object).isRequired,
+  imagePath: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  updateImage: PropTypes.func.isRequired,
 };
 
 export default UserDetails;

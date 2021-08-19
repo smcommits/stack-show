@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { ActionCableConsumer } from 'react-actioncable-provider';
+import PropTypes from 'prop-types';
 import Message from './Message';
-import MessageCable from './MessageCable';
-import BackendAPI from '../../core/services/api';
-import styles from '../../stylesheets/Conversations.module.scss';
-import { fetchConversations, addMessages } from '../../reducers/conversationReducer';
-import conversationExists from '../helpers/conversationComponentHelper';
+import BackendAPI from '../core/services/api';
+import styles from '../stylesheets/Conversations.module.scss';
+import { fetchConversations, addMessages } from '../reducers/conversationReducer';
+import conversationExists from '../components/helpers/conversationComponentHelper';
 import {
   subcribeToMessageChannel,
   subcribeToConversationChannel,
   unsubscribeToMessageChannel,
-} from '../../core/helpers/ConversationHelper';
-import ActionCableManager from '../../core/helpers/actionCableHelper';
-import FindUser from './FindUser';
-import ConversationsList from './ConversationsList';
-import Cable from './Cable';
+} from '../core/helpers/ConversationHelper';
+import FindUser from '../components/conversation/FindUser';
+import ConversationsList from '../components/conversation/ConversationsList';
 
 const Conversations = (props) => {
   const {
@@ -28,7 +25,6 @@ const Conversations = (props) => {
   } = props;
 
   const [activeConversation, setActiveConversation] = useState({});
-  const [active, setActiveIndex] = useState(0);
   const [findUser, setFindUser] = useState(false);
 
   const handleReceived = (response) => {
@@ -44,35 +40,27 @@ const Conversations = (props) => {
 
   useEffect(() => {
     getAllConversations();
+    generateName('conversations');
   }, []);
 
   useEffect(() => {
     const conversationChannel = subcribeToConversationChannel(handleReceived);
     const messageChannels = subcribeToMessageChannel(conversations, handleReceivedMessage);
-    console.log('sub');
     return function cleanup() {
-      console.log('cleanup');
       conversationChannel.unsubscribe();
       unsubscribeToMessageChannel(messageChannels);
     };
   });
 
-  // const conversationExists = () => {
-  // return conversations.find((conversation))
-  // }
-
-  const handleConversation = (title, sender_id, reciever_id) => {
+  const handleConversation = (title, senderId, recieverId) => {
     setFindUser(false);
-    const conversation = conversationExists(conversations, sender_id, reciever_id);
-    console.log(conversation)
+    const conversation = conversationExists(conversations, senderId, recieverId);
     if (conversation) {
-      console.log('he')
       setActiveConversation(conversation.id);
       return null;
     }
-    BackendAPI.startConversation(title, sender_id, reciever_id)
-      .then((res) => {
-      });
+    BackendAPI.startConversation(title, senderId, recieverId)
+      .then((res) => res);
   };
 
   const findActiveConversation = () => conversations.find(
@@ -98,7 +86,6 @@ const Conversations = (props) => {
               setActive={setActiveConversation}
               conversations={conversations}
               styles={styles}
-              setActiveIndex={setActiveIndex}
               currentUser={currentUser}
               findUser={setFindUser}
             />
@@ -108,13 +95,21 @@ const Conversations = (props) => {
               conversation={findActiveConversation()}
               handleReceived={handleReceivedMessage}
               styles={styles}
-              setActiveIndex={setActiveIndex}
             />
           </section>
         </div>
       </section>
     </>
   );
+};
+
+Conversations.propTypes = {
+  conversations: PropTypes.instanceOf(Object).isRequired,
+  getAllConversations: PropTypes.func.isRequired,
+  addConversation: PropTypes.func.isRequired,
+  addMessage: PropTypes.func.isRequired,
+  currentUser: PropTypes.instanceOf(Object).isRequired,
+  generateName: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

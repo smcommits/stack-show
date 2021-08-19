@@ -18,7 +18,7 @@ export default function CustomSearchHook(query, endpoint) {
 
     endpoint(query, source.token)
       .then((res) => {
-        setOptions(res.data.splice(0, 5));
+        setOptions(res.data.splice(0, 10));
         setLoading(false);
       }).catch((e) => {
         if (axios.isCancel(e)) return;

@@ -2,20 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { Image, Transformation } from 'cloudinary-react';
 import { connect } from 'react-redux';
 import { Cloudinary } from 'cloudinary-core';
+import PropTypes from 'prop-types';
 import styles from '../stylesheets/ProjectDetail.module.scss';
-import Rating from './Rating';
+import Rating from '../components/Rating';
 import { fetchProjectDetails } from '../reducers/projectDetails';
 import BackendAPI from '../core/services/api';
-import Loader from './helpers/Loader';
+import Loader from '../components/helpers/Loader';
 
 const ProjectDetail = (props) => {
   const {
     project, id, getProjectDetail, loading, hideLoader,
   } = props;
   const {
-    title,
     image_path: imagePath,
-    stack_list: stackList,
     user,
     average_rating: averageRating,
     description,
@@ -46,9 +45,8 @@ const ProjectDetail = (props) => {
 
   const handleFavorite = async () => {
     setFavorite(!favorite);
-
     if (favorite) {
-      const res = await BackendAPI.unFavoriteProject(favoriteId);
+      BackendAPI.unFavoriteProject(favoriteId);
     } else {
       const res = await BackendAPI.favoriteProject(id);
       if (res.status === 200) {
@@ -57,7 +55,6 @@ const ProjectDetail = (props) => {
     }
   };
 
-  // const stackListElements = stackList.map((stack) => <li key={Math.random()}>{stack}</li>);
   return (
     <>
       <Loader loading={loading} />
@@ -67,11 +64,13 @@ const ProjectDetail = (props) => {
         <section className={styles.projectSection}>
           <div className={styles.projectImage}>
             <figure className={styles.projectImageContainer}>
-              <img src={cloudinaryCore.url(imagePath)} onLoad={() => hideLoader()} />
+              <img src={cloudinaryCore.url(imagePath)} onLoad={() => hideLoader()} alt="project" />
             </figure>
             <div className={styles.imageOverlay}>
               <figure>
-                <img src={user.avatarPath || '/profile.png'} alt="user" />
+                <Image cloudName="dfsniizqr" publicId={user.image}>
+                  <Transformation gravity="face" height="100" width="100" crop="fill" />
+                </Image>
               </figure>
               <div className={styles.overlayText}>
                 <strong>{user.name.charAt(0).toUpperCase() + user.name.slice(1)}</strong>
@@ -86,11 +85,11 @@ const ProjectDetail = (props) => {
                 <h4>About this project</h4>
                 <div>
                   <span>Favourite This</span>
-                  <i className={favorite ? `las la-heart ${styles.orange}` : 'lar la-heart'} onClick={handleFavorite} />
+                  <i className={favorite ? `las la-heart ${styles.orange}` : 'lar la-heart'} onClick={handleFavorite} role="presentation" />
                 </div>
               </div>
               <p className={styles.descriptionText}>
-                {isReadMore ? `${description.slice(0, 200)}...` : description}
+                {isReadMore && description ? `${description.slice(0, 200)}...` : description}
               </p>
               <button type="button" onClick={toggleReadMore} className={styles.showMoreButton}>
                 {isReadMore ? <i className="las la-angle-down" /> : <i className="las la-angle-up" />}
@@ -99,12 +98,20 @@ const ProjectDetail = (props) => {
 
           </div>
 
-          <button className={styles.callToAction}>Take me to Project</button>
+          <button className={styles.callToAction} type="button">Take me to Project</button>
         </section>
         )}
       </section>
     </>
   );
+};
+
+ProjectDetail.propTypes = {
+  project: PropTypes.instanceOf(Object).isRequired,
+  id: PropTypes.number.isRequired,
+  getProjectDetail: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  hideLoader: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

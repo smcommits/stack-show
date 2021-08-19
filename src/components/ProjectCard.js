@@ -2,6 +2,7 @@ import React from 'react';
 import { Image, Transformation } from 'cloudinary-react';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
+import PropTypes from 'prop-types';
 import styles from '../stylesheets/ProjectCard.module.scss';
 import Rating from './Rating';
 
@@ -16,7 +17,6 @@ const ProjectCard = (props) => {
     id,
   } = project;
 
-  console.log(reference)
   const ref = reference || null;
 
   const isLarge = useMediaQuery({
@@ -55,4 +55,8 @@ const ProjectCard = (props) => {
   );
 };
 
+ProjectCard.propTypes = {
+  project: PropTypes.instanceOf(Object).isRequired,
+  reference: PropTypes.instanceOf(Object).isRequired,
+};
 export default ProjectCard;
