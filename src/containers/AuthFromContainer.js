@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import Auth from '../core/services/authentications';
+import PropTypes from 'prop-types'; import Auth from '../core/services/authentications';
 import styles from '../stylesheets/AuthForm.module.scss';
 import { validateSignUpForm, validateLoginForm } from '../components/authentication/validate';
 import AuthForm from '../components/authentication/AuthForm';
@@ -80,7 +79,7 @@ const AuthFormContainer = (props) => {
   );
 };
 
-AuthFromContainer.propTypes = {
+AuthFormContainer.propTypes = {
   setCurrentUser: PropTypes.func.isRequired,
 };
 
