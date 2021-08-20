@@ -8,7 +8,7 @@ const Cloudinary = (() => {
   };
 
   const endPoints = {
-    sigURI: 'http://localhost:5000/api/cloud/sig/new',
+    sigURI: 'https://stack-show-back.herokuapp.com/api/cloud/sig/new',
     uploadEndpoint: `https://api.cloudinary.com/v1_1/${baseConfig.cloudName}/image/upload`,
   };
 

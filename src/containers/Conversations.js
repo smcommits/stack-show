@@ -88,7 +88,7 @@ const Conversations = (props) => {
               styles={styles}
               currentUser={currentUser}
               findUser={setFindUser}
-          />
+            />
           </section>
           <section className={`${styles.messageMain} ${styles.swipe}`}>
             <Message
