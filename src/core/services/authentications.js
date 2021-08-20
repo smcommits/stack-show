@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const Auth = (() => {
   const endPoints = {
-    rootURI: 'https://stack-show-back.herokuapp.com/auth',
+    rootURI: 'http://localhost:5000/auth',
     signIn: '/sign_in',
     signOut: '/sign_out',
     resetPassword: '/password',
