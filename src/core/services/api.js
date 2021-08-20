@@ -4,7 +4,7 @@ const BackendAPI = (() => {
   axios.defaults.withCredentials = true;
 
   const endPoints = {
-    rootURI: 'http://localhost:5000/api',
+    rootURI: 'https://stack-show-back.herokuapp.com/api',
     allProjects: '/projects',
     createProject: '/projects',
     projectSearch: '/search/projects',
