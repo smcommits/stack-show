@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { logOutUser } from '../reducers/sessionReducer';
 import styles from '../stylesheets/Nav.module.scss';
 import Menu from './Menu';
+import Search from '../components/helpers/search/Search';
 
 const Nav = (props) => {
   const {
@@ -21,6 +22,7 @@ const Nav = (props) => {
         <i onClick={handleMenu} className="las la-bars" role="presentation" />
         <h1 className={styles.parentName}>{componentName}</h1>
         <div className={styles.place} />
+        <Search />
         <Menu
           menuHandler={handleMenu}
           open={openMenu}

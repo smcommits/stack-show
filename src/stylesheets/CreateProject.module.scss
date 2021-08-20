@@ -2,6 +2,11 @@
 
 .mainSection {
   padding: 2rem;
+
+  input,
+  button {
+    font-family: 'Poppins', sans-serif;
+  }
 }
 
 .uploadContainer {
@@ -86,7 +91,7 @@ textarea {
     color: #57606f;
   }
 
-  font-family: 'Fira sans';
+  font-family: 'Poppins', sans-serif;
 }
 
 .publishButton {

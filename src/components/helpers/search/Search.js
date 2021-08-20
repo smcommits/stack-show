@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import CustomSearchHook from './CustomSearchHook';
 import SearchItem from './SearchItem';
 import Loader from '../Loader';
+import styles from '../../../stylesheets/Search.module.scss';
+import BackendAPI from '../../../core/services/api';
 
-const Search = (props) => {
-  const { endpoint, styles } = props;
+const Search = () => {
   const [query, setQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
-  const { options, loading } = CustomSearchHook(query, endpoint);
+  const { options, loading } = CustomSearchHook(query, BackendAPI.searchProject.bind(BackendAPI));
   const handleSearch = (e) => {
     setQuery(e.target.value);
   };
@@ -41,11 +40,6 @@ const Search = (props) => {
       )}
     </div>
   );
-};
-
-Search.propTypes = {
-  endpoint: PropTypes.string.isRequired,
-  styles: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default Search;

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Auth from '../core/services/authentications';
 
 const sessionReducer = (state = '', action) => {

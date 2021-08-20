@@ -46,7 +46,7 @@ const FindUser = (props) => {
   return (
     <section className={styles.findUser}>
       <i className="las la-times" onClick={toggleSelf} role="presentation" />
-      <input type="" onChange={handleSearch} placeholder="Find a user" />
+      <input className={styles.searchInput} type="text" onChange={handleSearch} placeholder="Find a user" />
       <ul>
         {searchOptions}
         <li className={styles.loader}><Loader loading={loading} /></li>

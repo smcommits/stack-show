@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers/index';
-import App from './components/App';
+import App from './containers/App';
 import './stylesheets/Index.scss';
 
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware));

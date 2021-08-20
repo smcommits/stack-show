@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import BackendAPI from '../core/services/api';
 
 const conversationReducer = (state = [], action) => {
@@ -14,7 +16,7 @@ const conversationReducer = (state = [], action) => {
 };
 
 const fetchConversations = () => {
-  const thunkFunction = async (dispatch, useState) => {
+  const thunkFunction = async (dispatch, getState) => {
     BackendAPI.allConversations()
       .then((response) => {
         dispatch({ type: 'ALL_CONVERSATIONS', payload: response.data });

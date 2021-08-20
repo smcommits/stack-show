@@ -1,6 +1,6 @@
 
 .loading {
-  $colors: #f96169, #f96169, #f73e47, #f61b26, #e50914;
+  $colors: #ebeef3, #d5dce6, #c1cad9, #aeb9cf , #8596b4;
 
   display: flex;
   justify-content: center;
@@ -11,6 +11,7 @@
     height: 1rem;
     margin: 0.8em;
     border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 
     &::before {
       position: absolute;

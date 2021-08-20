@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const handleErrors = (projectsParams, imageUpload, setErrorCallback) => {
   if (!projectsParams.title && !imageUpload) {
     setErrorCallback({ title: 'Please provide a title', image: 'Please provide an image' });

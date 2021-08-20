@@ -9,7 +9,6 @@ const AuthForm = (props) => {
   const {
     styles,
     handleChange,
-    handleLogInSubmit,
     validateSignUp,
     signUpErrors,
     validateLogin,
@@ -63,9 +62,10 @@ const AuthForm = (props) => {
 AuthForm.propTypes = {
   styles: PropTypes.instanceOf(Object).isRequired,
   handleChange: PropTypes.func.isRequired,
-  handleLogInSubmit: PropTypes.func.isRequired,
   validateSignUp: PropTypes.func.isRequired,
+  validateLogin: PropTypes.func.isRequired,
   signUpErrors: PropTypes.instanceOf(Object).isRequired,
+  logInErrors: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default AuthForm;

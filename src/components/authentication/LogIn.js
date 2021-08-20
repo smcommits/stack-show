@@ -1,6 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import InputField from './InputField';
-import styles from '../../stylesheets/AuthForm.module.scss';
 
 const LogIn = (props) => {
   const {
@@ -32,6 +32,12 @@ const LogIn = (props) => {
       <button onClick={handleLogInSubmit} type="submit">Submit</button>
     </form>
   );
+};
+LogIn.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  handleLogInSubmit: PropTypes.func.isRequired,
+  styles: PropTypes.instanceOf(Object).isRequired,
+  errors: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default LogIn;

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,17 +8,16 @@ import {
 } from 'react-router-dom';
 import { validateUser } from '../reducers/sessionReducer';
 
-import AuthFormContainer from '../containers/AuthFromContainer';
-import HomePage from '../containers/HomePage';
-import Loader from './helpers/Loader';
-import Nav from '../containers/Nav';
-import ProjectPage from '../containers/ProjectPage';
-import Favorites from '../containers/Favorites';
-import CreateProject from '../containers/CreateProject';
-import Conversations from '../containers/Conversations';
+import AuthFormContainer from './AuthFromContainer';
+import HomePage from './HomePage';
+import Nav from './Nav';
+import ProjectPage from './ProjectPage';
+import Favorites from './Favorites';
+import CreateProject from './CreateProject';
+import Conversations from './Conversations';
 
 const App = (props) => {
-  const { currentUser, loading, performUserValidation } = props;
+  const { currentUser, performUserValidation } = props;
 
   useEffect(() => {
     performUserValidation();
@@ -27,9 +27,8 @@ const App = (props) => {
     <>
       <Router>
         <Switch>
-          {loading && <Loader />}
           {!currentUser && <AuthFormContainer />}
-          {!loading && (
+          {currentUser && (
           <>
             <Nav currentUser={currentUser} />
             <Route path="/" exact component={HomePage} />
@@ -54,6 +53,11 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(validateUser());
   },
 });
+
+App.propTypes = {
+  currentUser: PropTypes.instanceOf(Object).isRequired,
+  performUserValidation: PropTypes.func.isRequired,
+};
 
 const AppConnected = connect(mapStateToProps, mapDispatchToProps)(App);
 

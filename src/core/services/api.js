@@ -65,6 +65,7 @@ const BackendAPI = (() => {
       if (err.response) {
         return err.response;
       }
+      return err;
     }
   };
 

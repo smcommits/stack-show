@@ -59,7 +59,7 @@ const Conversations = (props) => {
       setActiveConversation(conversation.id);
       return null;
     }
-    BackendAPI.startConversation(title, senderId, recieverId)
+    return BackendAPI.startConversation(title, senderId, recieverId)
       .then((res) => res);
   };
 

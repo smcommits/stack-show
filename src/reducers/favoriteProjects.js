@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import BackendAPI from '../core/services/api';
 
 const favoriteProjectsReducer = (state = [], action) => {
