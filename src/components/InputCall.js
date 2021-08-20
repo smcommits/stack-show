@@ -19,7 +19,7 @@ const InputCall = (props) => {
 };
 
 InputCall.propTypes = {
-  fileInputRef: PropTypes.func.isRequired,
+  fileInputRef: PropTypes.instanceOf(Object).isRequired,
   styles: PropTypes.instanceOf(Object).isRequired,
   fileHandler: PropTypes.func.isRequired,
 };

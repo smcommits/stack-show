@@ -108,7 +108,7 @@ const ProjectDetail = (props) => {
 
 ProjectDetail.propTypes = {
   project: PropTypes.instanceOf(Object).isRequired,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   getProjectDetail: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   hideLoader: PropTypes.func.isRequired,

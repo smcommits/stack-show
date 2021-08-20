@@ -85,10 +85,14 @@ const Message = (props) => {
 };
 
 Message.propTypes = {
-  conversation: PropTypes.instanceOf(Object).isRequired,
+  conversation: PropTypes.instanceOf(Object),
   currentUser: PropTypes.instanceOf(Object).isRequired,
   styles: PropTypes.instanceOf(Object).isRequired,
 
+};
+
+Message.defaultProps = {
+  conversation: {},
 };
 
 const mapStateToProps = (state) => ({

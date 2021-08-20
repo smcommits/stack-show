@@ -9,6 +9,7 @@ const UserDetails = (props) => {
   const {
     styles, imagePath, name, id, updateImage,
   } = props;
+
   const [loading, setLoading] = useState(false);
   const fileInputRef = useRef();
 

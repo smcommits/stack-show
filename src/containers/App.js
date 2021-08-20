@@ -27,8 +27,8 @@ const App = (props) => {
     <>
       <Router>
         <Switch>
-          {!currentUser && <AuthFormContainer />}
-          {currentUser && (
+          {!currentUser.id && <AuthFormContainer />}
+          {currentUser.id && (
           <>
             <Nav currentUser={currentUser} />
             <Route path="/" exact component={HomePage} />

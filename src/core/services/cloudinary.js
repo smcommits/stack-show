@@ -2,8 +2,8 @@ import axios from 'axios';
 
 const Cloudinary = (() => {
   const baseConfig = {
-    cloudName: 'dfsniizqr',
-    apiKey: '214176227464638',
+    cloudName: process.env.REACT_APP_CLOUD_NAME,
+    apiKey: process.env.REACT_APP_CLOUDINARY_API_KEY,
     timestamp: Math.round(new Date().getTime() / 1000),
   };
 

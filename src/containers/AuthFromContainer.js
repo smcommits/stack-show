@@ -35,7 +35,8 @@ const AuthFormContainer = (props) => {
     const res = await Auth.signIn(formData);
     if (res.status === 200) {
       setSuccess(true);
-      setCurrentUser(res.data.data.uid);
+      console.log(res)
+      setCurrentUser(res.data.data);
     } else {
       setSuccess(false);
       setLoginErrors({ ...logInErrors, message: res.data.errors[0] });

@@ -57,6 +57,11 @@ const ProjectCard = (props) => {
 
 ProjectCard.propTypes = {
   project: PropTypes.instanceOf(Object).isRequired,
-  reference: PropTypes.instanceOf(Object).isRequired,
+  reference: PropTypes.instanceOf(Object),
+};
+
+ProjectCard.defaultProps = {
+  reference: null,
+
 };
 export default ProjectCard;

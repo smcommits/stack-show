@@ -58,10 +58,10 @@ const HomePage = (props) => {
 };
 
 HomePage.propTypes = {
-  projects: PropTypes.func.isRequired,
+  projects: PropTypes.instanceOf(Object).isRequired,
   getProjects: PropTypes.func.isRequired,
   generateName: PropTypes.func.isRequired,
-  loading: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({

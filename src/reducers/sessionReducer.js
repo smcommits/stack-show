@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import Auth from '../core/services/authentications';
 
-const sessionReducer = (state = '', action) => {
+const sessionReducer = (state = {}, action) => {
   switch (action.type) {
     case ('SET_CURRENT_USER_TRUE'):
       return action.payload;

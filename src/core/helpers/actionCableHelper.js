@@ -1,7 +1,7 @@
 import ActionCable from 'actioncable';
 
 const ActionCableManager = (() => {
-  const cable = ActionCable.createConsumer('ws://localhost:5000/cable');
+  const cable = ActionCable.createConsumer('wss://stack-show-back.herokuapp.com/cable');
 
   const createSubscription = ({
     channel = '',

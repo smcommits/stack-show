@@ -20,6 +20,7 @@ const LogIn = (props) => {
         type="email"
         name="email"
         errors={errors.email}
+        placeholder="email@example.com"
       />
 
       <InputField
@@ -27,6 +28,7 @@ const LogIn = (props) => {
         type="password"
         name="password"
         errors={errors.password}
+        placeholder="password"
       />
 
       <button onClick={handleLogInSubmit} type="submit">Submit</button>

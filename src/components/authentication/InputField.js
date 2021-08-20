@@ -21,10 +21,14 @@ const InputField = (props) => {
 
 InputField.propTypes = {
   handleChange: PropTypes.func.isRequired,
-  errors: PropTypes.instanceOf(Object).isRequired,
+  errors: PropTypes.string,
   type: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+};
+
+InputField.defaultProps = {
+  errors: '',
 };
 
 export default InputField;
