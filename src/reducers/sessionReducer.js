@@ -16,6 +16,7 @@ const sessionReducer = (state = {}, action) => {
 
 const validateUser = () => {
   const thunkFunction = async (dispatch, getState) => {
+    console.log('f')
     dispatch({ type: 'SHOW_LOADER' });
 
     Auth.userValidation()

@@ -21,6 +21,7 @@ const App = (props) => {
 
   useEffect(() => {
     performUserValidation();
+    console.log('req')
   }, []);
 
   return (

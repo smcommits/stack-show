@@ -10,7 +10,7 @@ import {
   subcribeToMessageChannel,
   subcribeToConversationChannel,
   unsubscribeToMessageChannel,
-} from '../core/helpers/ConversationHelper';
+} from '../core/helpers/conversationHelper';
 import FindUser from '../components/conversation/FindUser';
 import ConversationsList from '../components/conversation/ConversationsList';
 

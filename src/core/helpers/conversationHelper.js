@@ -1,4 +1,4 @@
-import ActionCableManager from './actionCableHelper';
+import ActionCableManager from '../services/actionCable';
 
 const addSubscriptionToMessage = (
   conversation,

@@ -1,25 +1,20 @@
-import axios from 'axios';
+import RequestClients from '../clients/index';
+import LocalStorageHelper from '../helpers/localStorageHelpe';
 
 const Auth = (() => {
+  const { authClient } = RequestClients;
+
+  const authHeaders = () => JSON.parse(localStorage.getItem('user'));
   const endPoints = {
-    rootURI: 'http://localhost:5000/auth',
     signIn: '/sign_in',
     signOut: '/sign_out',
     resetPassword: '/password',
     validateUser: '/validate_token',
   };
 
-  const baseConfig = {
-    withCredentials: true,
-  };
-
   const signIn = async (formData) => {
     try {
-      const res = await axios.post(
-        endPoints.rootURI + endPoints.signIn,
-        formData,
-        baseConfig,
-      );
+      const res = await authClient.post(endPoints.signIn, formData);
       return res;
     } catch (err) {
       if (err.response) {
@@ -31,12 +26,7 @@ const Auth = (() => {
 
   const signUp = async (formData) => {
     try {
-      const res = await axios.post(
-        endPoints.rootURI,
-        formData,
-        baseConfig,
-      );
-
+      const res = await authClient.post(formData);
       return { ...res.data };
     } catch (err) {
       if (err.response) {
@@ -48,10 +38,8 @@ const Auth = (() => {
 
   const signOut = async () => {
     try {
-      const res = await axios.delete(
-        endPoints.rootURI + endPoints.signOut,
-        baseConfig,
-      );
+      const res = await authClient.delete(endPoints.signOut, authHeaders());
+      LocalStorageHelper.removeAuthHeaders();
       return { ...res.data };
     } catch (err) {
       if (err.response) {
@@ -63,13 +51,11 @@ const Auth = (() => {
 
   const userValidation = async () => {
     try {
-      const res = await axios.get(
-        endPoints.rootURI + endPoints.validateUser,
-        baseConfig,
-      );
+      const res = await authClient.get(endPoints.validateUser, authHeaders());
       return { ...res.data };
     } catch (err) {
       if (err.response) {
+        LocalStorageHelper.removeAuthHeaders();
         return { ...err.response.data };
       }
       return err;

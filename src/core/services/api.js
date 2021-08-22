@@ -1,10 +1,9 @@
-import axios from 'axios';
+import RequestClients from '../clients/index';
 
 const BackendAPI = (() => {
-  axios.defaults.withCredentials = true;
+  const { rootClient } = RequestClients;
 
   const endPoints = {
-    rootURI: 'https://stack-show-back.herokuapp.com/api',
     allProjects: '/projects',
     createProject: '/projects',
     projectSearch: '/search/projects',
@@ -17,16 +16,9 @@ const BackendAPI = (() => {
     userUpdate: '/users/',
   };
 
-  const baseConfig = {
-    withCredentials: true,
-  };
-
   const getAllProjects = async (page) => {
     try {
-      const res = await axios.get(
-        `${endPoints.rootURI + endPoints.allProjects}?page=${page}`,
-        baseConfig,
-      );
+      const res = await rootClient.get(`${endPoints.allProjects}?page=${page}`);
       return res;
     } catch (err) {
       if (err.response) {
@@ -39,10 +31,9 @@ const BackendAPI = (() => {
 
   const createProject = async (projectsParams) => {
     try {
-      const res = await axios.post(
-        endPoints.rootURI + endPoints.createProject,
+      const res = await rootClient.post(
+        endPoints.createProject,
         projectsParams,
-        baseConfig,
       );
       return res;
     } catch (err) {
@@ -56,8 +47,8 @@ const BackendAPI = (() => {
 
   const searchProject = async (query) => {
     try {
-      const res = await axios.get(
-        `${endPoints.rootURI + endPoints.projectSearch}/?query=${query}`,
+      const res = await rootClient.get(
+        `${endPoints.projectSearch}/?query=${query}`,
         { withCredentials: true },
       );
       return res;
@@ -71,9 +62,7 @@ const BackendAPI = (() => {
 
   const getProjectDetails = async (id) => {
     try {
-      const res = axios.get(endPoints.rootURI + endPoints.projectDetails + id, {
-        withCredentials: true,
-      });
+      const res = rootClient.get(endPoints.projectDetails + id);
       return res;
     } catch (err) {
       if (err.response) {
@@ -85,11 +74,10 @@ const BackendAPI = (() => {
 
   const favoriteProject = async (id) => {
     try {
-      const res = axios.post(endPoints.rootURI + endPoints.favoriteProject, {
+      const res = rootClient.post(endPoints.favoriteProject, {
         params: {
           project_id: id,
         },
-
       });
       return res;
     } catch (err) {
@@ -102,7 +90,7 @@ const BackendAPI = (() => {
 
   const unFavoriteProject = async (id) => {
     try {
-      const res = axios.delete(endPoints.rootURI + endPoints.favoriteProject + id);
+      const res = rootClient.delete(endPoints.favoriteProject + id);
       return res;
     } catch (err) {
       if (err.response) {
@@ -114,7 +102,7 @@ const BackendAPI = (() => {
 
   const favoriteProjects = async () => {
     try {
-      const res = axios.get(endPoints.rootURI + endPoints.favoriteProject);
+      const res = rootClient.get(endPoints.favoriteProject);
       return res;
     } catch (err) {
       if (err.response) {
@@ -126,7 +114,7 @@ const BackendAPI = (() => {
 
   const allConversations = async () => {
     try {
-      const res = axios.get(endPoints.rootURI + endPoints.allConversations);
+      const res = rootClient.get(endPoints.allConversations);
       return res;
     } catch (err) {
       if (err.response) {
@@ -138,7 +126,7 @@ const BackendAPI = (() => {
 
   const createMessage = async (text, conversationId, userId) => {
     try {
-      const res = axios.post(endPoints.rootURI + endPoints.createMessage, {
+      const res = rootClient.post(endPoints.createMessage, {
         params: {
           text,
           conversation_id: conversationId,
@@ -156,10 +144,7 @@ const BackendAPI = (() => {
 
   const searchUsers = async (query) => {
     try {
-      const res = await axios.get(
-        `${endPoints.rootURI + endPoints.userSearch}/?query=${query}`,
-        { withCredentials: true },
-      );
+      const res = await rootClient.get(`${endPoints.userSearch}/?query=${query}`);
       return res;
     } catch (err) {
       if (err.response) {
@@ -171,7 +156,7 @@ const BackendAPI = (() => {
 
   const startConversation = async (title, senderId, recieverId) => {
     try {
-      const res = axios.post(endPoints.rootURI + endPoints.startConversation, {
+      const res = rootClient.post(endPoints.startConversation, {
         params: {
           title,
           sender_id: senderId,
@@ -189,7 +174,7 @@ const BackendAPI = (() => {
 
   const updateUser = async (id, params) => {
     try {
-      const res = axios.put(endPoints.rootURI + endPoints.userUpdate + id, params);
+      const res = rootClient.put(endPoints.userUpdate + id, params);
       return res;
     } catch (err) {
       if (err.response) {

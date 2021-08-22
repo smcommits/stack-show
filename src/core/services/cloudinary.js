@@ -1,4 +1,5 @@
 import axios from 'axios';
+import RequestClients from '../clients/index';
 
 const Cloudinary = (() => {
   const baseConfig = {
@@ -8,19 +9,18 @@ const Cloudinary = (() => {
   };
 
   const endPoints = {
-    sigURI: 'https://stack-show-back.herokuapp.com/api/cloud/sig/new',
+    sigURI: '/cloud/sig/new',
     uploadEndpoint: `https://api.cloudinary.com/v1_1/${baseConfig.cloudName}/image/upload`,
   };
 
   const getSignature = async () => {
     try {
-      const res = await axios.get(`${endPoints.sigURI}`,
+      const res = await RequestClients.rootClient.get(`${endPoints.sigURI}`,
         {
           params: {
             timestamp: baseConfig.timestamp,
             upload_preset: 'mqymjapp',
           },
-          withCredentials: true,
         });
       return res.data.sig;
     } catch (err) {
