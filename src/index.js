@@ -9,6 +9,7 @@ import rootReducer from './reducers/index';
 import App from './containers/App';
 import './stylesheets/Index.scss';
 
+dotenv.config({ silent: process.env.NODE_ENV === 'production' });
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware));
 // const composedEnhancer = applyMiddleware(thunkMiddleware);
 const store = createStore(rootReducer, composedEnhancer);
