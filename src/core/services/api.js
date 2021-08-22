@@ -49,7 +49,6 @@ const BackendAPI = (() => {
     try {
       const res = await rootClient.get(
         `${endPoints.projectSearch}/?query=${query}`,
-        { withCredentials: true },
       );
       return res;
     } catch (err) {

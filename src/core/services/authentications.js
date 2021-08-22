@@ -6,6 +6,7 @@ const Auth = (() => {
 
   const authHeaders = () => JSON.parse(localStorage.getItem('user'));
   const endPoints = {
+    signUp: '/',
     signIn: '/sign_in',
     signOut: '/sign_out',
     resetPassword: '/password',
@@ -26,7 +27,7 @@ const Auth = (() => {
 
   const signUp = async (formData) => {
     try {
-      const res = await authClient.post(formData);
+      const res = await authClient.post(endPoints.signUp, formData);
       return { ...res.data };
     } catch (err) {
       if (err.response) {
@@ -38,7 +39,7 @@ const Auth = (() => {
 
   const signOut = async () => {
     try {
-      const res = await authClient.delete(endPoints.signOut, authHeaders());
+      const res = await authClient.delete(endPoints.signOut);
       LocalStorageHelper.removeAuthHeaders();
       return { ...res.data };
     } catch (err) {

@@ -6,7 +6,7 @@ const sessionReducer = (state = {}, action) => {
     case ('SET_CURRENT_USER_TRUE'):
       return action.payload;
     case ('SET_CURRENT_USER_FALSE'):
-      return '';
+      return {};
     case ('UPDATE_USER_IMAGE'):
       return { ...state, image: action.payload };
     default:
@@ -16,7 +16,6 @@ const sessionReducer = (state = {}, action) => {
 
 const validateUser = () => {
   const thunkFunction = async (dispatch, getState) => {
-    console.log('f')
     dispatch({ type: 'SHOW_LOADER' });
 
     Auth.userValidation()

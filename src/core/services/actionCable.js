@@ -3,6 +3,8 @@ import ActionCable from 'actioncable';
 const ActionCableManager = (() => {
   const authHeaders = () => JSON.parse(localStorage.getItem('user'));
 
+  if (!authHeaders()) return null;
+
   const cable = ActionCable.createConsumer(
     `${process.env.REACT_APP_WS_URI}?uid=${authHeaders().uid}&token=${authHeaders()['access-token']}&client=${authHeaders().client}`,
   );

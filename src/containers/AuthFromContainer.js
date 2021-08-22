@@ -30,6 +30,7 @@ const AuthFormContainer = (props) => {
       setCurrentUser(res.data.uid);
     } else {
       setSuccess(false);
+      setSignUpErrors({ ...signUpErrors, message: res.errors.full_messages[0] });
     }
   };
 

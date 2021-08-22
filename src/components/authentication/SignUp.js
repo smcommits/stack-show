@@ -12,6 +12,7 @@ const SignUp = (props) => {
         <h3>Sign Up</h3>
         <p>Hi, welcome to Stack Show. Please sign up to contintue.</p>
       </div>
+      {errors.message && <p className={styles.formError}>{errors.message}</p>}
 
       <InputField
         placeholder="username"
