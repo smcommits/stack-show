@@ -4,13 +4,12 @@ import thunkMiddleware from 'redux-thunk';
 import dotenv from 'dotenv';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers/index';
 import App from './containers/App';
 import './stylesheets/Index.scss';
 
 dotenv.config({ silent: process.env.NODE_ENV === 'production' });
-const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware));
+const composedEnhancer = applyMiddleware(thunkMiddleware);
 // const composedEnhancer = applyMiddleware(thunkMiddleware);
 const store = createStore(rootReducer, composedEnhancer);
 
