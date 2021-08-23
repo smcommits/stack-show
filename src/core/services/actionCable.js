@@ -9,6 +9,17 @@ const ActionCableManager = (() => {
     `${process.env.REACT_APP_WS_URI}?uid=${authHeaders().uid}&token=${authHeaders()['access-token']}&client=${authHeaders().client}`,
   );
 
+  const isSubscribedConversation = () => cable.subscriptions.subscriptions.filter(
+    (sub) => JSON.parse(sub.identifier).channel === 'ConversationsChannel',
+  );
+
+  const isSubscribedMessage = (conversationID) => cable.subscriptions.subscriptions.filter(
+    (sub) => {
+      const parsed = JSON.parse(sub.identifier);
+      return parsed.channel === 'MessagesChannel' && parsed.conversation === conversationID;
+    },
+  );
+
   const createSubscription = ({
     channel = '',
     connectedCallback = null,
@@ -29,6 +40,8 @@ const ActionCableManager = (() => {
   return {
     cable,
     createSubscription,
+    isSubscribedConversation,
+    isSubscribedMessage,
   };
 })();
 

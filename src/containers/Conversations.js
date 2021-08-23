@@ -9,7 +9,7 @@ import conversationExists from '../components/helpers/conversationComponentHelpe
 import {
   subcribeToMessageChannel,
   subcribeToConversationChannel,
-  unsubscribeToMessageChannel,
+  convSubExists,
 } from '../core/helpers/conversationHelper';
 import FindUser from '../components/conversation/FindUser';
 import ConversationsList from '../components/conversation/ConversationsList';
@@ -44,12 +44,15 @@ const Conversations = (props) => {
   }, []);
 
   useEffect(() => {
-    const conversationChannel = subcribeToConversationChannel(handleReceived);
-    const messageChannels = subcribeToMessageChannel(conversations, handleReceivedMessage);
-    return function cleanup() {
-      conversationChannel.unsubscribe();
-      unsubscribeToMessageChannel(messageChannels);
-    };
+    if (!convSubExists('ConversationsChannel')) {
+      subcribeToConversationChannel(
+        handleReceived,
+      );
+    }
+
+    subcribeToMessageChannel(
+      conversations, handleReceivedMessage,
+    );
   });
 
   const handleConversation = (title, senderId, recieverId) => {
