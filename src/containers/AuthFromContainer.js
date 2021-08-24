@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'; import Auth from '../core/services/authentic
 import styles from '../stylesheets/AuthForm.module.scss';
 import { validateSignUpForm, validateLoginForm } from '../components/authentication/validate';
 import AuthForm from '../components/authentication/AuthForm';
-import LocalStorageHelper from '../core/helpers/localStorageHelpe';
 
 const AuthFormContainer = (props) => {
   const { setCurrentUser } = props;
@@ -25,9 +24,8 @@ const AuthFormContainer = (props) => {
   const handleSignUpSubmit = async () => {
     const res = await Auth.signUp(formData);
     if (res.status === 'success') {
-      LocalStorageHelper.parseAndSaveAuthInfo(res.headers);
       setSuccess(true);
-      setCurrentUser(res.data.uid);
+      setCurrentUser(res.data);
     } else {
       setSuccess(false);
       try {
