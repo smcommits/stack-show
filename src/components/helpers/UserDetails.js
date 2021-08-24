@@ -62,10 +62,14 @@ const UserDetails = (props) => {
 
 UserDetails.propTypes = {
   styles: PropTypes.instanceOf(Object).isRequired,
-  imagePath: PropTypes.string.isRequired,
+  imagePath: PropTypes.string,
   name: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   updateImage: PropTypes.func.isRequired,
+};
+
+UserDetails.defaultProps = {
+  imagePath: '',
 };
 
 export default UserDetails;

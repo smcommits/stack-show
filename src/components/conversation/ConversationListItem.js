@@ -18,15 +18,18 @@ const ConversationListItem = (props) => {
   const time = lastMessage.created_at;
   const dateTime = time ? DateTime.fromISO(time).toLocal().c : '';
   const sender = conversation.users.find((user) => user.id !== currentUser.id);
+  const imagePath = conversation.users[0].image;
   if (!sender) {
     return null;
   }
   return (
     <li className={styles.convText} onClick={() => { setActive(conversation.id); }} role="presentation">
       <figure>
+        {(imagePath && (
         <Image cloudName="dfsniizqr" publicId={conversation.users[0].image}>
           <Transformation gravity="face" height="100" width="100" crop="fill" />
         </Image>
+        )) || <img src="/profile.png" alt="user" />}
       </figure>
       <div className={styles.right}>
         <div className={styles.top}>

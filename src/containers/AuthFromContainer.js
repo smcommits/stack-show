@@ -30,7 +30,11 @@ const AuthFormContainer = (props) => {
       setCurrentUser(res.data.uid);
     } else {
       setSuccess(false);
-      setSignUpErrors({ ...signUpErrors, message: res.errors.full_messages[0] });
+      try {
+        setSignUpErrors({ ...signUpErrors, message: res.errors.full_messages[0] });
+      } catch {
+        setSignUpErrors({ ...signUpErrors, message: 'Something went wrong' });
+      }
     }
   };
 
@@ -41,7 +45,11 @@ const AuthFormContainer = (props) => {
       setCurrentUser(res.data.data);
     } else {
       setSuccess(false);
-      setLoginErrors({ ...logInErrors, message: res.data.errors[0] });
+      try {
+        setLoginErrors({ ...logInErrors, message: res.data.errors[0] });
+      } catch {
+        setLoginErrors({ ...logInErrors, message: 'Something went wrong!' });
+      }
     }
   };
 
