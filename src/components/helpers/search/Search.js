@@ -10,6 +10,7 @@ const Search = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const { options, loading } = CustomSearchHook(query, BackendAPI.searchProject.bind(BackendAPI));
+  console.log(options)
   const handleSearch = (e) => {
     setQuery(e.target.value);
   };
@@ -18,9 +19,10 @@ const Search = () => {
     setIsOpen(!isOpen);
   };
 
+
   const searchOrCloseButton = () => (
-    isOpen ? <i onClick={toggleSearch} className={`las la-times ${styles.searchToggle}`} role="presentation" />
-      : <i onClick={toggleSearch} className={`las la-search ${styles.searchToggle}`} role="presentation" />);
+    isOpen ? <i onClick={toggleSearch} data-testid="search-trigger" className={`las la-times ${styles.searchToggle}`} role="presentation" />
+      : <i onClick={toggleSearch} data-testid="search-trigger" className={`las la-search ${styles.searchToggle}`} role="presentation" />);
 
   const optionsList = options.map(
     (option) => (<SearchItem key={option.id} option={option} toggleSearch={toggleSearch} />),
@@ -29,7 +31,7 @@ const Search = () => {
   return (
     <div className={`${styles.searchWrapper} ${isOpen && styles.show}`}>
       <div className={`${styles.inputContainer} ${(isOpen && styles.show) || styles.hide}`}>
-        <input type="text" onChange={handleSearch} />
+        <input type="text" onChange={handleSearch} placeholder="Search for projects"/>
       </div>
       {searchOrCloseButton()}
       {isOpen && (

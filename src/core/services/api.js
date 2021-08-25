@@ -101,7 +101,7 @@ const BackendAPI = (() => {
 
   const favoriteProjects = async () => {
     try {
-      const res = rootClient.get(endPoints.favoriteProject);
+      const res = await rootClient.get(endPoints.favoriteProject);
       return res;
     } catch (err) {
       if (err.response) {

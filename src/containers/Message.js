@@ -21,6 +21,8 @@ const Message = (props) => {
     endDiv.current.scrollIntoView({ behavoir: 'smooth' });
   });
 
+  console.log(endDiv)
+
   const messageList = messages.map((message) => {
     const time = message.created_at;
     const dateTime = time ? DateTime.fromISO(time).toLocal().c : '';

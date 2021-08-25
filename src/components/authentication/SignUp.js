@@ -10,7 +10,7 @@ const SignUp = (props) => {
     <form>
       <div className={styles.formText}>
         <h3>Sign Up</h3>
-        <p>Hi, welcome to Stack Show. Please sign up to contintue.</p>
+        <p>Hi, welcome to Stack Show. Please sign up to continue.</p>
       </div>
       {errors.message && <p className={styles.formError}>{errors.message}</p>}
 
@@ -46,7 +46,7 @@ const SignUp = (props) => {
         errors={errors.pwconfirm}
       />
 
-      <button onClick={handleSignUpSubmit} type="submit">Sign Up</button>
+      <button onClick={handleSignUpSubmit} type="submit" data-testid="submit-button">Sign Up</button>
     </form>
   );
 };

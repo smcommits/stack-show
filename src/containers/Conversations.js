@@ -13,6 +13,7 @@ import {
 } from '../core/helpers/conversationHelper';
 import FindUser from '../components/conversation/FindUser';
 import ConversationsList from '../components/conversation/ConversationsList';
+import ActionCableManager from '../core/services/actionCable';
 
 const Conversations = (props) => {
   const {
