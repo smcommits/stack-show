@@ -2,7 +2,7 @@
 <h1 align="center">Stack Active</h1>
       
 <p align="center">
-  <a href="https://cinemafaces.herokuapp.com/" targer="_blank">Live Demo</a> •
+  <a href="https://stackactive.herokuapp.com/" targer="_blank">Live Demo</a> •
   <a href="#getting-started">Getting Started</a> •
   <a href="#development-information">Development Information</a> •
   <a href="#contributing">Contributing</a> •
