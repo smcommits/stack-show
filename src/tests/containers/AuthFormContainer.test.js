@@ -1,16 +1,22 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { act } from 'react-dom/test-utils';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '../utils';
 import AuthFormContainer from '../../containers/AuthFromContainer';
 import Auth from '../../core/services/authentications';
 
-beforeEach(() => {
-  render(
-    <BrowserRouter>
-      <AuthFormContainer />
-    </BrowserRouter>,
-  );
+beforeEach(async () => {
+  jest.spyOn(Auth, 'userValidation').mockResolvedValue({});
+  jest.spyOn(Auth, 'signUp').mockResolvedValue({});
+
+  await act(async () => {
+    render(
+      <BrowserRouter>
+        <AuthFormContainer />
+      </BrowserRouter>,
+    );
+  });
 });
 const user = {
   name: 'Test user',
@@ -44,9 +50,6 @@ test('it renders the AuthForm component', () => {
 });
 
 test('it should catch the error if something went wrong with the server', async () => {
-  const mockSignUp = jest.spyOn(Auth, 'signUp');
-  mockSignUp.mockResolvedValue({});
-
   const inputPlaceholders = ['username', 'email@example.com', 'password', 'confirm password'];
 
   const inputElements = inputPlaceholders.map(

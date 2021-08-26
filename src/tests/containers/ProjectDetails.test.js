@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+
 import React from 'react';
 import '@testing-library/jest-dom';
 import { BrowserRouter } from 'react-router-dom';
@@ -31,7 +33,7 @@ beforeEach(async () => {
   await act(async () => {
     render(
       <BrowserRouter>
-        <ProjectDetail id={1} />
+        <ProjectDetail id="1" />
       </BrowserRouter>,
       {
         loading: false,
@@ -40,13 +42,16 @@ beforeEach(async () => {
   });
 });
 
-it('should render all the project details', async () => {
-  const username = await screen.findByText(project.data.user.name);
-  const description = await screen.findByText(`${project.data.description.slice(0, 200)}...`);
-  const callToAction = await screen.findByText('Take me to Project');
-  expect(username).toBeInTheDocument;
-  expect(description).toBeInTheDocument;
-  expect(callToAction).toBeInTheDocument;
+describe('should render all the project details', () => {
+  const projectDetails = [project.data.user.name, `${project.data.description.slice(0, 200)}...`, 'Take me to Project'];
+
+  test.each(projectDetails)(
+    'given %s details should be present in the document',
+    async (detail) => {
+      const data = await screen.findByText(detail);
+      expect(data).toBeInTheDocument;
+    },
+  );
 });
 
 it('should show more of description when the expand button is clicked', async () => {

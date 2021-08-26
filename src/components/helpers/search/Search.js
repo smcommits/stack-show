@@ -10,7 +10,6 @@ const Search = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const { options, loading } = CustomSearchHook(query, BackendAPI.searchProject.bind(BackendAPI));
-  console.log(options);
   const handleSearch = (e) => {
     setQuery(e.target.value);
   };

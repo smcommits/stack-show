@@ -38,7 +38,6 @@ const unsubscribeToMessageChannel = (channels) => {
 };
 
 const convSubExists = () => ActionCableManager.isSubscribedConversation().length;
-console.log(ActionCableManager);
 export {
   subcribeToMessageChannel,
   subcribeToConversationChannel,

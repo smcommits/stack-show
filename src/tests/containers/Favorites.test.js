@@ -1,8 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
-import { render, fireEvent, screen } from '../utils';
+import { render, screen } from '../utils';
 import Favorite from '../../containers/Favorites';
 import BackendAPI from '../../core/services/api';
 
