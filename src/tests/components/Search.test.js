@@ -47,12 +47,10 @@ const searchResponse = {
     },
   ],
 };
-beforeEach(() => {
+beforeEach(async () => {
   const mockFetchSearch = jest.spyOn(BackendAPI, 'searchProject');
   mockFetchSearch.mockResolvedValue(searchResponse);
-});
 
-test('should render search list with first 10 items in response', async () => {
   await act(async () => {
     render(
       <BrowserRouter>
@@ -60,33 +58,28 @@ test('should render search list with first 10 items in response', async () => {
       </BrowserRouter>,
     );
   });
+});
 
+test('should render search list with first 10 items in response', async () => {
   const searchTrigger = screen.getByTestId('search-trigger');
   userEvent.click(searchTrigger);
 
   const tenthSearchItem = screen.getByText('Project 10');
-  expect(tenthSearchItem).toBeInTheDocument;
-
-  const eleventhSearchItem = screen.queryByText('Project 11');
-  expect(eleventhSearchItem).not.toBeInTheDocument;
+  return expect(tenthSearchItem).toBeInTheDocument;
 });
 
-test('it should close the search if the close button is clicked', async () => {
-  await act(async () => {
-    render(
-      <BrowserRouter>
-        <Search />
-      </BrowserRouter>,
-    );
-  });
-
+test('it should not render more that first 10 items in response', async () => {
   const searchTrigger = screen.getByTestId('search-trigger');
   userEvent.click(searchTrigger);
 
-  expect(screen.findByText('Project 1')).toBeInTheDocument;
-
-  userEvent.click(searchTrigger);
-
-  expect(screen.queryByText('Project 1')).not.toBeInTheDocument;
+  const eleventhSearchItem = screen.queryByText('Project 11');
+  return expect(eleventhSearchItem).not.toBeInTheDocument;
 });
 
+test('it should close the search if the close button is clicked', async () => {
+  const searchTrigger = screen.getByTestId('search-trigger');
+  userEvent.click(searchTrigger);
+  userEvent.click(searchTrigger);
+
+  return expect(screen.queryByText('Project 1')).not.toBeInTheDocument;
+});

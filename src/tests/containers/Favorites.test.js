@@ -32,8 +32,7 @@ test('it renders the Favorite Project for users', async () => {
       </BrowserRouter>,
     );
   });
-  const { title, stack_list } = favoriteProjects.data[0];
+  const { title } = favoriteProjects.data[0];
 
-  expect(screen.getByText(title)).toBeInTheDocument;
-  expect(screen.getByText(stack_list[0])).toBeInTheDocument;
+  return expect(screen.getByText(title)).toBeInTheDocument;
 });

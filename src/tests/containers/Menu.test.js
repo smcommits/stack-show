@@ -1,8 +1,8 @@
+/* eslint-disable no-unused-expressions */
+
 import '@testing-library/jest-dom';
 import { BrowserRouter } from 'react-router-dom';
-import userEvent from '@testing-library/user-event';
-import { act } from 'react-dom/test-utils';
-import { render, fireEvent, screen } from '../utils';
+import { render, screen } from '../utils';
 import Menu from '../../containers/Menu';
 
 beforeEach(() => {
@@ -25,13 +25,21 @@ beforeEach(() => {
 });
 
 it('should display the user info', () => {
-  expect(screen.getByText('Test user')).toBeInTheDocument;
+  expect(screen.findByText('Test user')).toBeInTheDocument;
 });
 
-it('should render the menu with list of navigation items', () => {
-  expect(screen.getByText('Home')).toBeInTheDocument;
-  expect(screen.getByText('Create Project')).toBeInTheDocument;
-  expect(screen.getByText('Conversations')).toBeInTheDocument;
-  expect(screen.getByText('Logout')).toBeInTheDocument;
-
+describe('it should render the menu with list of navigation items', () => {
+  const navLinks = [
+    ['Home'],
+    ['Create Project'],
+    ['Conversations'],
+    ['Logout'],
+  ];
+  test.each(navLinks)(
+    'given %s navLink should be present in the document',
+    (navLink) => {
+      const text = screen.findByText(navLink);
+      expect(text).toBeInTheDocument;
+    },
+  );
 });

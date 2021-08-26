@@ -1,8 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
-import { act } from 'react-dom/test-utils';
-import { render, fireEvent, screen } from '../utils';
+import { render, screen } from '../utils';
 import AuthFormContainer from '../../containers/AuthFromContainer';
 import Auth from '../../core/services/authentications';
 
@@ -20,19 +19,28 @@ const user = {
   confirmPassword: 'testuseruser',
 };
 
-test('it renders the AuthForm component', () => {
-  const welcomeText = screen.getByText('Hi, welcome to Stack Show. Please sign up to continue.');
-  expect(welcomeText).toBeInTheDocument;
+describe('it validates user input', () => {
+  const cases = [
+    ['Please provide a user name'],
+    ['Please provide a correct email address'],
+    ['Password must have at least 8 characters'],
+    ["Password confirmation doesn't match"],
+  ];
+
+  test.each(cases)(
+    'given %s string should be present',
+    (string) => {
+      const submitButton = screen.getByTestId('submit-button');
+      userEvent.click(submitButton);
+      const text = screen.findByText(string);
+      return expect(text).toBeInTheDocument;
+    },
+  );
 });
 
-test('it validates user input', () => {
-  const submitButton = screen.getByTestId('submit-button');
-  userEvent.click(submitButton);
-
-  expect('Please provide a user name.').toBeInTheDocument;
-  expect('Please provide a correct email address.').toBeInTheDocument;
-  expect('Password must have at least 8 characters.').toBeInTheDocument;
-  expect("Password confirmation doesn't match.").toBeInTheDocument;
+test('it renders the AuthForm component', () => {
+  const welcomeText = screen.getByText('Hi, welcome to Stack Show. Please sign up to continue.');
+  return expect(welcomeText).toBeInTheDocument;
 });
 
 test('it should catch the error if something went wrong with the server', async () => {
@@ -45,14 +53,12 @@ test('it should catch the error if something went wrong with the server', async 
     (placeholder) => screen.getByPlaceholderText(placeholder),
   );
 
-  Object.keys(user).map((key, index) => {
-    userEvent.type(inputElements[index], user[key]);
-  });
+  Object.keys(user).map((key, index) => userEvent.type(inputElements[index], user[key]));
 
   const submitButton = screen.getByTestId('submit-button');
   userEvent.click(submitButton);
 
   const error = await screen.findByText('Something went wrong');
 
-  expect(screen.getByText('Something went wrong')).toBeInTheDocument;
+  return expect(error).toBeInTheDocument;
 });
