@@ -1,70 +1,100 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center">Stack Active</h1>
+      
+<p align="center">
+  <a href="https://stackactive.herokuapp.com/" targer="_blank">Live Demo</a> •
+  <a href="#getting-started">Getting Started</a> •
+  <a href="#development-information">Development Information</a> •
+  <a href="#contributing">Contributing</a> •
+  <a href="#authors">Authors</a> 
+</p>
 
-## Available Scripts
+<h4 align="center">Stack Active is a portfolio of projects where users can showcase their programming projects and chat with other users.<h4>
+<hr>
 
-In the project directory, you can run:
+![final](https://user-images.githubusercontent.com/59168430/131041736-5061eb5a-39c5-4ada-b07f-228153a8123c.png)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<hr>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Live Demo
+https://stackactive.herokuapp.com/
 
-### `npm test`
+*Please not that the application is deployed on free tier of Heroku, and therefore it may take a few seconds to load. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
 
-### `npm run build`
+#### Cloning
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To clone the project on your local machine, run the following command. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+git clone https://github.com/smcommits/stack-show
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Navigating
 
-### `npm run eject`
+Navigate to the project directory using the following command.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+cd stack-show
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Dependencies 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+To install all the dependencies required to run the project, execute the following command. 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+npm install
+```
+#### Launching
 
-## Learn More
+To launch the application, run the following command. 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+npm run start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<hr>
 
-### Code Splitting
+## Development Information
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Stack
 
-### Analyzing the Bundle Size
+This project is a front-end solution or client for Stack Active website. It is built with the following tech stacks:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- React
+- React-DOM
+- React-Router
+- Redux 
 
-### Making a Progressive Web App
+### Tests
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+This application uses react-testing-library to implement the tests. 
 
-### Advanced Configuration
+To run the tests, please use the following command:
+```
+npm run test
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<hr>
 
-### Deployment
+## Authors
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+👤 **Anas Siddiqui**
 
-### `npm run build` fails to minify
+- GitHub: [Anas Siddiqui](https://github.com/smcommits)
+- LinkedIn: [Anas Siddiqui](www.linkedin.com/in/sm-anas)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<hr>
+
+## 🤝Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+<hr>
+
+## Show your support
+
+Give a ⭐️ if you like this project!
+   
