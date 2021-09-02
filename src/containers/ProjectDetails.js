@@ -85,7 +85,7 @@ const ProjectDetail = (props) => {
                 <h4>About this project</h4>
                 <div>
                   <span>Favourite This</span>
-                  <i className={favorite ? `las la-heart ${styles.orange}` : 'lar la-heart'} onClick={handleFavorite} role="presentation" />
+                  <i className={favorite ? `las la-heart interactive ${styles.orange}` : 'lar la-heart interactive'} onClick={handleFavorite} role="presentation" />
                 </div>
               </div>
               <p className={styles.descriptionText}>

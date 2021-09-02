@@ -23,7 +23,7 @@ const ConversationListItem = (props) => {
     return null;
   }
   return (
-    <li className={styles.convText} onClick={() => { setActive(conversation.id); }} role="presentation">
+    <li className="interactive" onClick={() => { setActive(conversation.id); }} role="presentation">
       <figure>
         {(imagePath && (
         <Image cloudName="dfsniizqr" publicId={imagePath}>

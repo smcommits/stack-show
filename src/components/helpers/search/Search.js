@@ -19,8 +19,8 @@ const Search = () => {
   };
 
   const searchOrCloseButton = () => (
-    isOpen ? <i onClick={toggleSearch} data-testid="search-trigger" className={`las la-times ${styles.searchToggle}`} role="presentation" />
-      : <i onClick={toggleSearch} data-testid="search-trigger" className={`las la-search ${styles.searchToggle}`} role="presentation" />);
+    isOpen ? <i onClick={toggleSearch} data-testid="search-trigger" className={`las la-times interactive ${styles.searchToggle}`} role="presentation" />
+      : <i onClick={toggleSearch} data-testid="search-trigger" className={`las la-search interactive ${styles.searchToggle}`} role="presentation" />);
 
   const optionsList = options.map(
     (option) => (<SearchItem key={option.id} option={option} toggleSearch={toggleSearch} />),

@@ -28,7 +28,7 @@ const ConversationsList = (props) => {
     <ul className={styles.convList}>
       <li className={styles.header}>
         <h4>All Coversations</h4>
-        <button type="submit" onClick={newChat}>
+        <button type="submit" onClick={newChat} className="interactive">
           <i className="las la-plus" />
         </button>
       </li>

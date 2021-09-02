@@ -24,7 +24,7 @@ const FindUser = (props) => {
   const searchOptions = options.map((option) => (
     <li
       key={Math.random()}
-      className={styles.searchItem}
+      className={`${styles.searchItem} interactive`}
       onClick={conversationHandler}
       data-attribute={option.id}
       role="presentation"
