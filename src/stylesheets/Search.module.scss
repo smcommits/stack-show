@@ -1,0 +1,66 @@
+@import './Variables.scss';
+
+.inputContainer {
+  clip-path: polygon(100% 0, 100% 0%, 100% 100%, 100% 100%);
+  transition: all 0.5s;
+  width: 100%;
+
+  input {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    border: 1px solid #989898;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.inputContainer.show {
+  clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
+  transition: all 0.5s;
+}
+
+.searchWrapper {
+  width: 24px;
+  right: 5px;
+  transition: width 0.5s;
+  position: absolute;
+  z-index: 20;
+
+  i {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #989898;
+    font-size: 24px;
+  }
+}
+
+.searchWrapper.show {
+  width: 80%;
+  transition: width 0.5s;
+}
+
+.searchList {
+  z-index: 10;
+  position: absolute;
+  background: #fff;
+  list-style: none;
+  right: 0;
+  left: 0;
+  top: 45px;
+  overflow: hidden;
+
+  li {
+    padding: 0.5rem 1rem;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: 300;
+    }
+  }
+}

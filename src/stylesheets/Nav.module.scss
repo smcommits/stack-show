@@ -1,0 +1,48 @@
+.mainNav {
+  background: #fff;
+  padding: 1rem;
+  width: 100%;
+  position: relative;
+
+  .parentName {
+    font-weight: 500;
+    position: absolute;
+    font-size: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .place {
+    width: 24px;
+  }
+
+  .mainNavUl {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+
+    i {
+      font-size: 24px;
+      color: #989898;
+      z-index: 20;
+    }
+  }
+}
+
+@media (min-width: 968px) {
+  .mainNav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.2rem;
+
+    .parentName {
+      font-size: 24px;
+    }
+
+    .mainNavUl {
+      width: 100%;
+    }
+  }
+}
