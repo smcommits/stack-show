@@ -1,0 +1,40 @@
+@import './Variables.scss';
+.loaderWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
+.projectSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.backToTop {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background: #fff;
+  border: none;
+  color: $secondary-text;
+  padding: 1rem;
+  font-size: 18px;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 6px -1px, rgba(0, 0, 0, 0.06) 0 2px 4px -1px;
+}
+
+@media (min-width: 768px) {
+  .projectSection {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+  }
+}
+

@@ -5,15 +5,16 @@
   background: #fff;
   margin: 1rem auto;
   box-shadow: rgba(17, 17, 26, 0.1) 0 4px 16px, rgba(17, 17, 26, 0.05) 0 8px 32px;
-  border-radius: 3px;
+  border-radius: 15px;
   overflow: hidden;
 
   figure {
     max-height: 600px;
     overflow: hidden;
-
+    padding: 1rem;
     img {
       width: 100%;
+      border-radius: 15px;
     }
   }
 }
@@ -23,6 +24,9 @@
   justify-content: space-between;
   align-items: flex-start;
   padding: 1rem;
+  strong {
+    color: $primary;
+  }
 
   a {
     text-decoration: none;
@@ -42,8 +46,14 @@
   }
 
   .stackList {
+    display: flex;
+    flex-wrap: wrap;
     list-style: none;
-    font-size: 12px;
+    font-size: 10px;
+    li {
+      padding: 0.2rem;
+      color: $darker-text;
+    }
   }
 }
 
@@ -55,6 +65,6 @@
 
 @media (min-width: 992px) {
   .projectCard {
-    flex-basis: 30%;
+    flex-basis: 24%;
   }
 }

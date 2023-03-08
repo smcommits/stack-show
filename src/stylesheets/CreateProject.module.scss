@@ -15,7 +15,7 @@
   align-items: center;
   position: relative;
   min-height: 60vw;
-  border: 1px dashed $orange;
+  border: 1px dashed $primary-background;
   cursor: pointer;
   margin-bottom: 1rem;
 }
@@ -95,7 +95,7 @@ textarea {
 }
 
 .publishButton {
-  background: $orange;
+  background: $primary-background;
   border: none;
   color: #fff;
   width: 100%;

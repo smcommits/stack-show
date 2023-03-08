@@ -1,5 +1,13 @@
 @import './Variables.scss';
-
+.loaderWrapper {
+  height: 80px;
+  width: 80px;
+  color: $primary;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
 .projectSection {
   display: flex;
   flex-direction: column;
@@ -32,3 +40,4 @@
     padding: 0 1rem;
   }
 }
+

@@ -1,11 +1,14 @@
-import React from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Bars } from 'react-loader-spinner';
 import InputField from './InputField';
 
 const LogIn = (props) => {
   const {
     handleChange, handleLogInSubmit, styles, errors,
   } = props;
+
+  const loading = useSelector((state) => state.componentLoading.login);
 
   return (
 
@@ -20,7 +23,8 @@ const LogIn = (props) => {
         type="email"
         name="email"
         errors={errors.email}
-        placeholder="email@example.com"
+        iconPath="https://img.icons8.com/material-sharp/48/null/new-post.png"
+        placeholder="Email"
       />
 
       <InputField
@@ -28,10 +32,21 @@ const LogIn = (props) => {
         type="password"
         name="password"
         errors={errors.password}
-        placeholder="password"
+        iconPath="https://img.icons8.com/material-rounded/48/null/password.png"
+        placeholder="Password"
       />
 
-      <button onClick={handleLogInSubmit} type="submit">Submit</button>
+      <button onClick={handleLogInSubmit} type="submit">
+        {loading ? (
+          <Bars
+            height="20"
+            width="30"
+            color="#f6f6f6"
+            ariaLabel="bars-loading"
+            visible
+          />
+        ) : 'Login'}
+      </button>
     </form>
   );
 };

@@ -4,7 +4,7 @@ import SignUp from './SignUp';
 import LogIn from './LogIn';
 
 const AuthForm = (props) => {
-  const [formType, setFormType] = useState('signUp');
+  const [formType, setFormType] = useState('logIn');
 
   const {
     styles,
@@ -26,25 +26,16 @@ const AuthForm = (props) => {
       <div className={styles.formWrapper}>
         <ul className={styles.tabbedNav}>
           <li>
-            <button type="button" onClick={switchForm} data-attribute="signUp" className={(isSignUp && styles.active) || undefined}>
-              <strong>Sign Up</strong>
-            </button>
-          </li>
-          <li>
             <button type="submit" onClick={switchForm} data-attribute="logIn" className={(isLogin && styles.active) || undefined}>
               <strong>Log In</strong>
             </button>
           </li>
+          <li>
+            <button type="button" onClick={switchForm} data-attribute="signUp" className={(isSignUp && styles.active) || undefined}>
+              <strong>Sign Up</strong>
+            </button>
+          </li>
         </ul>
-
-        {isSignUp && (
-        <SignUp
-          handleChange={handleChange}
-          handleSignUpSubmit={validateSignUp}
-          styles={styles}
-          errors={signUpErrors}
-        />
-        )}
 
         {isLogin && (
         <LogIn
@@ -52,6 +43,15 @@ const AuthForm = (props) => {
           handleLogInSubmit={validateLogin}
           styles={styles}
           errors={logInErrors}
+        />
+        )}
+
+        {isSignUp && (
+        <SignUp
+          handleChange={handleChange}
+          handleSignUpSubmit={validateSignUp}
+          styles={styles}
+          errors={signUpErrors}
         />
         )}
       </div>

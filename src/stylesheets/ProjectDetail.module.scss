@@ -1,5 +1,14 @@
 @import './Variables.scss';
 
+.loaderWrapper {
+  height: 80px;
+  width: 80px;
+  color: $primary;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
 .projectImage {
   position: relative;
 }
@@ -55,7 +64,7 @@
 }
 
 .callToAction {
-  background: $orange;
+  background: $primary-background;
   width: 100%;
   position: fixed;
   bottom: 0;
@@ -86,7 +95,7 @@
   }
 
   .orange {
-    color: $orange;
+    color: $primary-background;
   }
 }
 

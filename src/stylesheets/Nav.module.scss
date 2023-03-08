@@ -1,5 +1,7 @@
+@import './Variables.scss';
+
 .mainNav {
-  background: #fff;
+  background: $primary;
   padding: 1rem;
   width: 100%;
   position: relative;
@@ -10,6 +12,7 @@
     font-size: 16px;
     left: 50%;
     transform: translateX(-50%);
+    color: $secondary;
   }
 
   .place {

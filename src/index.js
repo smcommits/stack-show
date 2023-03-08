@@ -4,8 +4,8 @@ import thunkMiddleware from 'redux-thunk';
 import dotenv from 'dotenv';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import rootReducer from './reducers/index';
-import App from './containers/App';
+import rootReducer from './state/reducers';
+import App from './components/App';
 import './stylesheets/Index.scss';
 
 dotenv.config({ silent: process.env.NODE_ENV === 'production' });

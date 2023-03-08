@@ -1,0 +1,19 @@
+@import './Variables.scss';
+
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  a {
+    text-decoration: none;
+    color: $secondary;
+    background-color: $primary;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    display: inline-block;
+  }
+}

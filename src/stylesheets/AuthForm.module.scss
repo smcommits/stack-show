@@ -1,4 +1,4 @@
-@import './Variables.scss';
+@import "./Variables.scss";
 
 .formError {
   font-size: 12px;
@@ -15,7 +15,7 @@
 }
 
 .active {
-  background: $orange;
+  background: $primary-background;
   color: #fff;
 }
 
@@ -28,66 +28,113 @@
   li {
     flex-basis: 50%;
 
+    &:nth-child(1) {
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+      overflow: hidden;
+    }
+
+    &:nth-child(2) {
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      overflow: hidden;
+    }
     button {
       width: 100%;
       border: none;
       padding: 1rem;
-      font-family: 'Poppins', sans-serif;
+      font-family: "Poppins", sans-serif;
     }
   }
 }
 
 .formWrapper {
   width: 80%;
-  max-width: 500px;
+  max-width: 400px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 2rem 2rem;
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  background: #fff;
+  position: relative;
+  border-radius: 10px;
 
   .fieldWrapper {
     margin: 1rem 0;
     display: block;
-
-    p {
+    .errors {
       font-size: 12px;
-      color: #da1414;
+      color: $error-color;
       padding-bottom: 0.3rem;
     }
   }
 
   form {
-    text-align: center;
-
-    input {
-      width: 100%;
-      padding: 1rem;
-      border-radius: 50px;
-      border: 1px solid #d3d3d3;
-      background: none;
-      font-family: 'Poppins', sans-serif;
-
-      &:focus {
-        outline: none !important;
-        border: 1px solid $orange;
-      }
-    }
+    text-align: center; 
 
     button {
-      background: $orange;
+      background: $primary-background;
       border: none;
       color: #fff;
       padding: 1rem 2rem;
-      margin-top: 1rem;
-      border-radius: 50px;
-      font-family: 'Poppins', sans-serif;
+      border-radius: 10px;
+      font-family: "Poppins", sans-serif;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 50%);
+      position: absolute;
 
       &:hover {
-        background: $orange-light;
+        background: #323232;
       }
 
       &:active {
-        background: $orange;
+        background: $primary-background;
       }
     }
+  }
+}
+
+.inputWrapper {
+  position: relative;
+  margin-top: 2rem;
+
+  input {
+    width: 100%;
+    padding: 1rem;
+    padding-left: 3rem;
+    border-radius: 10px;
+    border: none;
+    background: $secondary;
+    font-family: "Poppins", sans-serif;
+
+    &:focus {
+      outline: none !important;
+      border: 3px solid $primary-background;
+
+      & + .placeholder {
+        background: $primary-background;
+        padding: .1rem .4rem;
+        border-radius: 5px;
+        color: $secondary-text;
+      }
+    }
+  }
+  img {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+  }
+
+  .placeholder {
+    position: absolute;
+    top: 0;
+    transform: translateY(-52%);
+    left: 3rem;
+    font-size: 14px;
+    color: $darker-text;
+    z-index:1;
   }
 }

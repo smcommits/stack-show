@@ -3,8 +3,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { act } from 'react-dom/test-utils';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '../utils';
-import AuthFormContainer from '../../containers/AuthFromContainer';
-import Auth from '../../core/services/authentications';
+import AuthFormContainer from '../../components/authentication';
+import { Auth } from '../../services';
 
 beforeEach(async () => {
   jest.spyOn(Auth, 'userValidation').mockResolvedValue({});

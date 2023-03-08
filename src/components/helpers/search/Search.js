@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { ThreeDots } from 'react-loader-spinner';
 import CustomSearchHook from './CustomSearchHook';
 import SearchItem from './SearchItem';
-import Loader from '../Loader';
+import { Loader } from '../../common';
 import styles from '../../../stylesheets/Search.module.scss';
-import BackendAPI from '../../../core/services/api';
+import { BackendAPI } from '../../../services';
 
 const Search = () => {
   const [query, setQuery] = useState('');
@@ -34,8 +35,21 @@ const Search = () => {
       {searchOrCloseButton()}
       {isOpen && (
         <ul className={styles.searchList}>
+          {!loading && !optionsList.length && <li>No results found.</li>}
           {optionsList}
-          <Loader loading={loading} />
+          {loading && (
+          <li>
+            <ThreeDots
+              height="20"
+              width="50"
+              radius="9"
+              color="#f6f6f6"
+              wrapperStyle={{ justifyContent: 'center' }}
+              ariaLabel="three-dots-loading"
+              visible
+            />
+          </li>
+          )}
         </ul>
       )}
     </div>

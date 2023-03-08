@@ -47,12 +47,15 @@
 .searchList {
   z-index: 10;
   position: absolute;
-  background: #fff;
+  background: $primary;
   list-style: none;
   right: 0;
   left: 0;
   top: 45px;
   overflow: hidden;
+  color: $secondary;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 
   li {
     padding: 0.5rem 1rem;
@@ -61,6 +64,10 @@
       text-decoration: none;
       color: inherit;
       font-weight: 300;
+    }
+    &:hover {
+      background: $secondary;
+      color: $primary;
     }
   }
 }

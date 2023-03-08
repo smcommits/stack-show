@@ -4,17 +4,20 @@ import styles from '../../stylesheets/AuthForm.module.scss';
 
 const InputField = (props) => {
   const {
-    handleChange, errors, type, placeholder, name,
+    handleChange, errors, type, placeholder, name, iconPath,
   } = props;
   return (
     <div className={styles.fieldWrapper}>
-      {errors && <p>{errors}</p>}
-      <input
-        type={type}
-        placeholder={placeholder}
-        onChange={handleChange}
-        name={name}
-      />
+      {errors && <p className={styles.errors}>{errors}</p>}
+      <div className={styles.inputWrapper}>
+        {iconPath && <img src={iconPath} alt="icon" />}
+        <input
+          type={type}
+          onChange={handleChange}
+          name={name}
+        />
+        <p className={styles.placeholder}>{placeholder}</p>
+      </div>
     </div>
   );
 };
