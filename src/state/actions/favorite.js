@@ -1,8 +1,9 @@
 import { BackendAPI } from '../../services';
 import loaderActions from './loader';
 
+// eslint-disable-next-line import/prefer-default-export
 export const fetchFavorites = () => {
-  const thunkFuntion = async (dispatch, getState) => {
+  const thunkFuntion = async (dispatch) => {
     dispatch(loaderActions.startLoading('favorites'));
     BackendAPI.favoriteProjects()
       .then((response) => {

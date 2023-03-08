@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { act } from 'react-dom/test-utils';
 import { render, screen } from '../utils';
-import Favorite from '../../containers/Favorites';
-import BackendAPI from '../../core/services/api';
+import Favorites from '../../components/favorite';
+import { BackendAPI } from '../../services';
 
 const favoriteProjects = {
   data: [
@@ -27,7 +27,7 @@ test('it renders the Favorite Project for users', async () => {
   await act(async () => {
     render(
       <BrowserRouter>
-        <Favorite />
+        <Favorites />
       </BrowserRouter>,
     );
   });

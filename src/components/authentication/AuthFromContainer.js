@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Auth } from '../../services';
 import { setCurrentUser, loaderActions } from '../../state/actions';
 import { withAuth } from '../common';
@@ -94,6 +95,10 @@ const AuthFormContainer = ({ authenticated }) => {
       />
     </>
   );
+};
+
+AuthFormContainer.propTypes = {
+  authenticated: PropTypes.bool.isRequired,
 };
 
 export default withAuth(AuthFormContainer);

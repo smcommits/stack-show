@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getConsumer } from '../../helpers/actionCable';
 import Message from './children/Message';
 import { withAuth } from '../common';
@@ -112,5 +113,7 @@ const Conversations = ({ authenticated }) => {
     </>
   );
 };
-
+Conversations.propTypes = {
+  authenticated: PropTypes.bool.isRequired,
+};
 export default withAuth(Conversations);

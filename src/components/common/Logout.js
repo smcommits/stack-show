@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { logOutUser } from '../../state/actions';
 import styles from '../../stylesheets/Generic.module.scss';
 
@@ -18,6 +19,10 @@ const Logout = (props) => {
       <button type="submit" onClick={handleLogout}>Logout</button>
     </div>
   );
+};
+
+Logout.propTypes = {
+  menuHandler: PropTypes.func.isRequired,
 };
 
 export default Logout;

@@ -3,10 +3,10 @@ import { Image, Transformation } from 'cloudinary-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Cloudinary } from 'cloudinary-core';
 import PropTypes from 'prop-types';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { Rings } from 'react-loader-spinner';
 import styles from '../../stylesheets/ProjectDetail.module.scss';
-import { Rating, Loader, withAuth } from '../common';
+import { Rating, withAuth } from '../common';
 import { fetchProjectDetails } from '../../state/actions';
 import BackendAPI from '../../services/services/api';
 
@@ -60,6 +60,7 @@ const ProjectDetail = (props) => {
         setFavoriteId(res.data.id);
       }
     }
+    return null;
   };
   return (
     <>
@@ -121,5 +122,11 @@ const ProjectDetail = (props) => {
       )}
     </>
   );
+};
+
+ProjectDetail.propTypes = {
+  id: PropTypes.string.isRequired,
+  authenticated: PropTypes.bool.isRequired,
+  history: PropTypes.instanceOf(Object).isRequired,
 };
 export default withRouter(withAuth(ProjectDetail));

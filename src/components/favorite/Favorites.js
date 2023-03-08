@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Rings } from 'react-loader-spinner';
+import PropTypes from 'prop-types';
 import { withAuth, ProjectCard } from '../common';
 import { fetchFavorites, generateName } from '../../state/actions';
 import styles from '../../stylesheets/Favorite.module.scss';
@@ -47,5 +47,7 @@ const Favorites = ({ authenticated }) => {
     </div>
   );
 };
-
+Favorites.propTypes = {
+  authenticated: PropTypes.bool.isRequired,
+};
 export default withAuth(Favorites);

@@ -3,7 +3,7 @@ import { BackendAPI } from '../../services';
 export const addConversation = (conversation) => ({ type: 'ADD_CONVERSATION', payload: conversation });
 
 export const fetchConversations = () => {
-  const thunkFunction = async (dispatch, getState) => {
+  const thunkFunction = async (dispatch) => {
     BackendAPI.allConversations().then((response) => {
       dispatch({ type: 'ALL_CONVERSATIONS', payload: response.data });
     });

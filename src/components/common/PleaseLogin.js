@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styles from '../../stylesheets/PleaseLogin.module.scss';
 
 const PleaseLogin = (props) => {
@@ -12,5 +13,7 @@ const PleaseLogin = (props) => {
     </div>
   );
 };
-
+PleaseLogin.propTypes = {
+  text: PropTypes.string.isRequired,
+};
 export default PleaseLogin;

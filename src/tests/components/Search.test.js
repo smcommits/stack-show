@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
 import Search from '../../components/helpers/search/Search';
-import BackendAPI from '../../core/services/api';
+import { BackendAPI } from '../../services';
 
 const searchResponse = {
   data: [

@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import { Image, Transformation } from 'cloudinary-react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Cloudinary, BackendAPI } from '../../services';
@@ -69,7 +68,6 @@ UserDetails.propTypes = {
   imagePath: PropTypes.string,
   name: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
-  updateImage: PropTypes.func.isRequired,
 };
 
 UserDetails.defaultProps = {

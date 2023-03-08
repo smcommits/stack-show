@@ -7,8 +7,8 @@ import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
 import faker from 'faker';
 import { render, screen } from '../utils';
-import ProjectDetail from '../../containers/ProjectDetails';
-import BackendAPI from '../../core/services/api';
+import ProjectDetail from '../../components/projects/ProjectDetails';
+import { BackendAPI } from '../../services';
 
 const project = {
   data: {

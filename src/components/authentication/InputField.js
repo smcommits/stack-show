@@ -28,10 +28,12 @@ InputField.propTypes = {
   type: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  iconPath: PropTypes.string,
 };
 
 InputField.defaultProps = {
   errors: '',
+  iconPath: '',
 };
 
 export default InputField;

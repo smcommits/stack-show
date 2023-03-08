@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'; import PropTypes from 'prop-types';
 import styles from '../../stylesheets/Menu.module.scss';
 import { UserDetails, withAuth, Logout } from '../common';
@@ -11,13 +11,9 @@ const Menu = (props) => {
     open,
   } = props;
 
-  const dispatch = useDispatch();
-
-  const { id, name, image } = authenticated ? useSelector((state) => state.session.currentUser) : {};
-
-  const handleLogout = () => {
-    dispatch(logOutUser());
-  };
+  const { id, name, image } = authenticated
+    ? useSelector((state) => state.session.currentUser)
+    : {};
 
   return (
 
@@ -57,7 +53,7 @@ const Menu = (props) => {
 Menu.propTypes = {
   menuHandler: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
-  logOut: PropTypes.func.isRequired,
+  authenticated: PropTypes.bool.isRequired,
 };
 
 export default withAuth(Menu);

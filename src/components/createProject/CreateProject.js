@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { Bars } from 'react-loader-spinner';
-import { withAuth, Loader } from '../common';
+import PropTypes from 'prop-types';
+import { withAuth } from '../common';
 import { BackendAPI, Cloudinary } from '../../services';
 import styles from '../../stylesheets/CreateProject.module.scss';
 import ImageUpload from './ImageUpload';
@@ -147,5 +148,7 @@ const CreateProject = ({ authenticated }) => {
     </div>
   );
 };
-
+CreateProject.propTypes = {
+  authenticated: PropTypes.bool.isRequired,
+};
 export default withAuth(CreateProject);

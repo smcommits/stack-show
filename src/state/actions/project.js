@@ -2,7 +2,7 @@ import { BackendAPI } from '../../services';
 import loaderActions from './loader';
 
 export const fetchProjects = (page) => {
-  const thunkFunction = async (dispatch, getState) => {
+  const thunkFunction = async (dispatch) => {
     dispatch(loaderActions.startLoading('homepage'));
     BackendAPI.getAllProjects(page)
       .then((res) => {
@@ -16,7 +16,7 @@ export const fetchProjects = (page) => {
 };
 
 export const fetchProjectDetails = (id) => {
-  const thunkFuntion = async (dispatch, getState) => {
+  const thunkFuntion = async (dispatch) => {
     dispatch(loaderActions.startLoading('projectPage'));
     BackendAPI.getProjectDetails(id)
       .then((response) => {

@@ -3,7 +3,7 @@
 import '@testing-library/jest-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { render, screen } from '../utils';
-import Menu from '../../containers/Menu';
+import Menu from '../../components/menu/Menu';
 
 beforeEach(() => {
   render(

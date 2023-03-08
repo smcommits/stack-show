@@ -2,10 +2,9 @@ import React, {
   useState, useEffect, useRef, useCallback,
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
 import { Rings, ThreeDots } from 'react-loader-spinner';
 import { fetchProjects, generateName } from '../../state/actions';
-import { ProjectCard, Loader } from '../common';
+import { ProjectCard } from '../common';
 import styles from '../../stylesheets/HomePage.module.scss';
 
 const HomePage = () => {
@@ -24,6 +23,7 @@ const HomePage = () => {
 
   const lastProjectElement = useCallback((element) => {
     if (observer.current) observer.current.disconnect();
+    // eslint-disable-next-line consistent-return
     observer.current = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         if (page > totalPages) return null;

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
 import { DateTime } from 'luxon';
 import { Image, Transformation } from 'cloudinary-react';
 import PropTypes from 'prop-types';
@@ -78,6 +77,12 @@ const Message = (props) => {
       </form>
     </>
   );
+};
+
+Message.propTypes = {
+  conversation: PropTypes.instanceOf(Object).isRequired,
+  styles: PropTypes.instanceOf(Object).isRequired,
+  currentUser: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default Message;

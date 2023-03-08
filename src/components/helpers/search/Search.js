@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { ThreeDots } from 'react-loader-spinner';
 import CustomSearchHook from './CustomSearchHook';
 import SearchItem from './SearchItem';
-import { Loader } from '../../common';
 import styles from '../../../stylesheets/Search.module.scss';
 import { BackendAPI } from '../../../services';
 
